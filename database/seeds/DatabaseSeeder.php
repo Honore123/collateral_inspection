@@ -12,6 +12,13 @@ class DatabaseSeeder extends Seeder
             PermissionRoleTableSeeder::class,
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
+            CeilingSeeder::class,
+            ElevationSeeder::class,
+            FoundationSeeder::class,
+            PavementSeeder::class,
+            RoofSeeder::class,
+            TenureTypeSeeder::class,
+            DoorWindowSeeder::class,
 
         ]);
         $rwandaAdusPath = './database/files/rwanda_adus.sql';
