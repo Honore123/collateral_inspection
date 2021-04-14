@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePropertyRequest;
+use App\Models\Elevation;
+use App\Models\Foundation;
 use App\Models\Property;
 use App\Models\Earth;
+use App\Models\Roof;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,8 +59,19 @@ class PropertyController extends Controller
     }
     public function storeApi(Request $request, $id)
     {
-        return Property::create($request->all());
+        $path =  $request->file('photo')->store('public/buildings');
+        $buildingData = json_decode($request->info, true);
+        $buildingData['image'] = $path;
+
+        return Property::create($buildingData);
     }
-
-
+    public function foundation(){
+        return Foundation::all();
+    }
+    public function elevation(){
+        return Elevation::all();
+    }
+    public function roof(){
+        return Roof::all();
+    }
 }
