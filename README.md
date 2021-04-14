@@ -1,2 +1,2 @@
-# collateral
+# Collateral Inspection System
 Collateral Inspection System 
