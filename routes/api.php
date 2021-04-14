@@ -15,6 +15,13 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
 });
 
+//preset data of app property dropdowns api
+Route::get('/foundations',[PropertyController::class, 'foundation']);
+Route::get('/elevations',[PropertyController::class, 'elevation']);
+Route::get('/roofs',[PropertyController::class, 'roof']);
+
+//preset data of app property dropdowns api
+Route::get('/tenures',[EarthController::class, 'tenure']);
 
 // Inspections
 Route::get('/inspections', [EarthController::class, 'indexApi']);

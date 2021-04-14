@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEarthRequest;
 use App\Http\Requests\UpdateEarthRequest;
 use App\Models\Earth;
+use App\Models\TenureType;
 use App\Models\User;
 use App\Models\Property;
 use Gate;
@@ -119,6 +120,8 @@ class EarthController extends Controller
         $earth->update($request->all());
         return $earth;
     }
-
+    public function tenure(){
+        return TenureType::all();
+    }
 
 }
