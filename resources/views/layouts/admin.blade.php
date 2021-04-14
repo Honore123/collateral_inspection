@@ -134,8 +134,8 @@
             {{ csrf_field() }}
         </form>
     </div>
-    <script src="{{ asset('vendors/jquery/jquery.min.js')}}" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
-    <script src="{{ asset('vendors/popper/popper.min.js')}}" integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA==" crossorigin="anonymous"></script>
+    <script src="{{ asset('vendors/jquery/jquery.min.js')}}" ></script>
+    <script src="{{ asset('vendors/popper/popper.min.js')}}" ></script>
     <script src="{{ asset('vendors/bootstrap/bootstrap.min.js')}}"></script>
     <script src="{{ asset('vendors/select2/select2.min.js')}}"></script>
     <script src="{{ asset('vendors/moment/moment.min.js')}}"></script>
