@@ -241,7 +241,7 @@
                                     </tr>
                                     <tr>
                                         <th class="float-right">Picture:</th>
-                                        <td><img src="{{ $properties->image ?? asset('assets/img/screen.png') }}" width="250" alt=""></td>
+                                        <td><img src="{{ asset(".$properties->image.") ?? asset('assets/img/screen.png') }}" width="250" alt=""></td>
                                     </tr>
                                     </tbody></table>
                             </div>
