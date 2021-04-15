@@ -70,10 +70,19 @@ class EarthController extends Controller
 
     public function update(UpdateEarthRequest $request, Earth $earth)
     {
-        $earth->update([
-            'status' => $request->status
-        ]);
 
+        //   Save pdf
+        $pdf = PDF::loadView('createPdf',array('earth'=>$earth));
+        $pdf->setOptions(['isPhpEnabled'=>true, 'isRemoteEnabled'=>true, 'chroot'=>public_path('/storage/buildings')]);
+        $filename = time().'_'.$earth->propertyOwner.'.pdf';
+        $pdf->save(public_path('storage/generatedPdf/'.$filename));
+
+        $earth->update([
+            'status' => $request->status,
+            'value' => $request->value,
+            'map' => $request->map->store('maps'),
+            'reportFile' => $filename,
+        ]);
         return redirect()->route('admin.earths.reports')->with('msg', 'Inspection Approved');
     }
 
