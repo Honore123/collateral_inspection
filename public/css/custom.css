@@ -176,3 +176,17 @@ div.dt-button-collection {
 
 .shows {display: block;}
 /* End of button */
+
+/*ReadOnly*/
+.form-control:disabled, .form-control[readonly] {
+    background-color: #ffffff;
+    opacity: 1;
+}
+
+label:not(.form-check-label):not(.custom-file-label):not(.required) {
+    font-weight: normal;
+    font-size: .89rem;
+}
+.rep {
+    font-weight: normal;
+}

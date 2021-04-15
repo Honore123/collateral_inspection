@@ -34,53 +34,53 @@
     <tbody>
     <tr>
         <td class="key-align">Inspection Date:</td>
-        <td class="value">{{$inspection->inspectionDate}}</td>
+        <td class="value">{{$earth->inspectionDate}}</td>
         <td class="location">Province:</td>
-        <td class="value">{{$inspection->province}}</td>
+        <td class="value">{{$earth->province}}</td>
     </tr>
     <tr>
         <td class="key-align">Property UPI:</td>
-        <td class="value">{{$inspection->propertyUPI}}</td>
+        <td class="value">{{$earth->propertyUPI}}</td>
         <td class="location">District:</td>
-        <td class="value">{{$inspection->propertyUPI}}</td>
+        <td class="value">{{$earth->propertyUPI}}</td>
     </tr>
     <tr>
         <td class="key-align">Owner:</td>
-        <td class="value">{{$inspection->propertyOwner}}</td>
+        <td class="value">{{$earth->propertyOwner}}</td>
         <td class="location"> Sector:</td>
-        <td class="value">{{$inspection->sector}}</td>
+        <td class="value">{{$earth->sector}}</td>
     </tr>
     <tr>
         <td class="key-align">Plot Size:</td>
-        <td class="value">{{$inspection->plotSize}}</td>
+        <td class="value">{{$earth->plotSize}}</td>
         <td class="location"> Cell:</td>
-        <td class="value">{{$inspection->cell}}</td>
+        <td class="value">{{$earth->cell}}</td>
     </tr>
     <tr>
         <td class="key-align">Tenure Type:</td>
-        <td class="value">{{$inspection->tenureType}}</td>
+        <td class="value">{{$earth->tenureType}}</td>
         <td class="location"> Village:</td>
-        <td class="value">{{$inspection->village}}</td>
+        <td class="value">{{$earth->village}}</td>
     </tr>
     <tr>
         <td class="key-align">Property Type:</td>
-        <td class="value">{{$inspection->propertyType}}</td>
+        <td class="value">{{$earth->propertyType}}</td>
         <td class="location"> Property Served By:</td>
-        <td class="value">{{$inspection->servedBy}}</td>
+        <td class="value">{{$earth->servedBy}}</td>
     </tr>
     <tr>
         <td class="key-align">Encumbranes:</td>
-        <td class="value">{{$inspection->encumbranes?'Yes':'No'}}</td>
+        <td class="value">{{$earth->encumbranes?'Yes':'No'}}</td>
     </tr>
     <tr>
         <td class="key-align">Mortgaged:</td>
-        <td class="value">{{$inspection->mortgaged?'Yes':'No'}}</td>
+        <td class="value">{{$earth->mortgaged?'Yes':'No'}}</td>
     </tr>
     <tr>
         <td class="key-align">Number of Buildings:</td>
-        <td class="value">{{$inspection->property->count()}}</td>
+        <td class="value">{{$earth->property->count()}}</td>
     </tr>
-    @forelse($inspection->property as $property)
+    @forelse($earth->property as $property)
         <tr class="building-underline">
             <td colspan="4" class="building-title">BUILDING {{$loop->iteration++}}</td>
         </tr>
@@ -114,7 +114,9 @@
             <td class="key-align">Elevation:</td>
             <td class="value">{{$property->elevation}}</td>
             <td class="location">Picture:</td>
-            <td class="value">Image</td>
+            <td class="value" rowspan="5" >
+                <img src="{{ public_path('storage/'.$property->image) }}" width="250">
+            </td>
         </tr>
         <tr>
             <td class="key-align">Roof:</td>

@@ -45,7 +45,7 @@
                         <td>{{ $earths->propertyUPI ?? '' }}</td>
                         <td>
                             @foreach($users as $user)
-                                @if( $earths->users_id != $user->id )
+                                @if( $earths->users_id == $user->id )
                                     {{ $user->name ?? ''}}
                                 @else
                                     No user found

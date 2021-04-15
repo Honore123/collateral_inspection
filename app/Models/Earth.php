@@ -39,7 +39,10 @@ class Earth extends Model
         'longitude',
         'accuracy',
         'status',
-        'users_id'
+        'users_id',
+        'value',
+        'reportFile',
+        'map'
     ];
 
     protected function serializeDate(DateTimeInterface $date)
