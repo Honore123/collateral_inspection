@@ -59,7 +59,9 @@ class PropertyController extends Controller
     }
     public function storeApi(Request $request, $id)
     {
-        $path =  $request->file('photo')->store(storage_path('buildings'));
+
+        $path =  $request->file('photo')->store('buildings');
+
         $buildingData = json_decode($request->info, true);
         $buildingData['image'] = $path;
 
