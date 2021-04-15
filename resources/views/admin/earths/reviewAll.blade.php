@@ -5,6 +5,15 @@
                 <h4 class="ml-2"> Inspection <small class="text-small text-muted">[ UPI: {{$earth->propertyUPI}} ]</small> </h4>
             </div>
             <div class="col-6">
+                @if($earth->status == 2)
+                    <span class="badge badge-success mr-2">
+                        <i class="fas fa-thumbs-up"></i> &nbsp; Approved
+                    </span>
+                @else
+                    <span class="badge badge-success mr-2">
+                        <i class="fas fa-clock"></i> &nbsp; Pending
+                    </span>
+                @endif
                 <a class="btn btn-secondary btn-sm float-right mr-2" href="{{ route('admin.earths.reports') }}">
                     Back
                 </a>
@@ -34,61 +43,61 @@
                                 <tbody><tr>
                                     <th class="float-right">Inspection date:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('inspectionDate') ? 'is-invalid' : '' }}" name="inspectionDate" id="inspectionDate" value="{{ old('inspectionDate', $earth->inspectionDate) }}" >
+                                        <label class="rep"> {{ old('inspectionDate', $earth->inspectionDate) }} </label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Property UPI:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('propertyUPI') ? 'is-invalid' : '' }}" readonly name="propertyUPI" id="propertyUPI" value="{{ old('propertyUPI', $earth->propertyUPI) }}" >
+                                        <label class="rep"> {{ old('propertyUPI', $earth->propertyUPI) }} </label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Owner:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('propertyOwner') ? 'is-invalid' : '' }}" name="propertyOwner" id="propertyOwner" value="{{ old('propertyOwner', $earth->propertyOwner) }}" >
+                                        <label class="rep"> {{ old('propertyOwner', $earth->propertyOwner) }} </label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Property size:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('plotSize') ? 'is-invalid' : '' }}" name="plotSize" id="plotSize" value="{{ old('plotSize', $earth->plotSize) }}" >
+                                        <label class="rep"> {{ old('plotSize', $earth->plotSize) }} </label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Tenature type:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('tenureType') ? 'is-invalid' : '' }}" name="tenureType" id="tenureType" value="{{ old('tenureType', $earth->tenureType) }}" >
+                                        <label class="rep"> {{ old('tenureType', $earth->tenureType) }} </label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Property type:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('propertyType') ? 'is-invalid' : '' }}" name="propertyType" id="propertyType" value="{{ old('propertyType', $earth->propertyUPI) }}" >
+                                        <label class="rep"> {{ old('propertyType', $earth->propertyUPI) }} </label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Encumbrance:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('encumbranes') ? 'is-invalid' : '' }}" name="encumbranes" id="encumbranes" value="@if($earth->encumbranes == 1){{ old('encumbranes', $earth->encumbranes) ? 'Yes' : '' }} @else No @endif " >
+                                        <label class="rep"> @if($earth->encumbranes == 1){{ old('encumbranes', $earth->encumbranes) ? 'Yes' : '' }} @else No @endif </label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Mortgaged:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('mortgaged') ? 'is-invalid' : '' }}" name="mortgaged" id="mortgaged" value="@if($earth->mortgaged == 1){{ old('mortgaged', $earth->mortgaged) ? 'Yes' : '' }} @else No @endif " >
+                                        <label class="rep"> @if($earth->mortgaged == 1){{ old('mortgaged', $earth->mortgaged) ? 'Yes' : '' }} @else No @endif </label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Building type:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('buildingType') ? 'is-invalid' : '' }}" name="buildingType" id="buildingType" value="*" >
+                                        <label class="rep">*</label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Number of building:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('nb') ? 'is-invalid' : '' }}" name="nb" id="nb" value="{{ old('nb', $earth->property->count()) }}" >
+                                        <label class="rep"> {{ old('nb', $earth->property->count()) }} </label>
                                     </td>
                                 </tr>
                                 </tbody></table>
@@ -101,31 +110,31 @@
                                 <tbody><tr>
                                     <th class="float-right">Province:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('province') ? 'is-invalid' : '' }}" name="province" id="province" value="{{ old('province', $earth->province) }}" >
+                                        <label class="rep"> {{ old('province', $earth->province) }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">District:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('district') ? 'is-invalid' : '' }}" name="district" id="district" value="{{ old('district', $earth->district) }}" >
+                                       <label class="rep"> {{ old('district', $earth->district) }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Sector:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('sector') ? 'is-invalid' : '' }}" name="sector" id="sector" value="{{ old('sector', $earth->sector) }}" >
+                                        <label class="rep"> {{ old('sector', $earth->sector) }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Cell:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('cell') ? 'is-invalid' : '' }}" name="cell" id="cell" value="{{ old('cell', $earth->cell) }}" >
+                                        <label class="rep"> {{ old('cell', $earth->cell) }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th class="float-right">Property served by:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('servedBy') ? 'is-invalid' : '' }}" name="servedBy" id="servedBy" value="{{ old('servedBy', $earth->servedBy) }}" >
+                                        <label class="rep"> {{ old('servedBy', $earth->servedBy) }}
                                     </td>
                                 </tr>
                                 </tbody></table>
@@ -194,18 +203,15 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th class="float-right">Plastered, Rendered and painted:</th>
+                                        <th class="float-right">Internal finishing:</th>
                                         <td>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label" for="radio1">
-                                                    <input type="checkbox" class="form-check-input" id="radio1" name="optradio" value="option1"  >Internal
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label" for="radio2">
-                                                    <input type="checkbox" class="form-check-input" id="radio2" name="optradio" value="option2" checked>External
-                                                </label>
-                                            </div>
+                                            {{ $properties->internal }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="float-right">External finishing:</th>
+                                        <td>
+                                            {{ $properties->external }}
                                         </td>
                                     </tr>
                                     </tbody></table>
@@ -246,7 +252,7 @@
                                     </tr>
                                     <tr>
                                         <th class="float-right">Picture:</th>
-                                        <td><img src="{{ asset("storage/".$properties->image) ?? asset('assets/img/screen.png') }}" width="250" alt=""></td>
+                                        <td><img src="{{ asset("storage/".$properties->image) }}" width="250" alt=""></td>
                                     </tr>
                                     </tbody></table>
                             </div>
@@ -262,21 +268,34 @@
                 <!-- /. B1 -->
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-12">
                         <div class="form-group form-inline">
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
                                     <td class="float-right">
-                                        <label class="">Estimated value (Total): </label>
+                                        <label class="required">Estimated value (Total): </label>
                                     </td>
                                     <td>
-                                        <input class="form-control form-control-sm {{ $errors->has('servedBy') ? 'is-invalid' : '' }}" name="value" id="servedBy" value="{{ old('value', $earth->value) }}">
+                                        <input class="form-control form-control-sm form-control-plaintext {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" id="value" value="{{ old('value', $earth->value) }}" placeholder="86, 000, 000" required>
                                     </td>
                                     </tr>
                                     <tr>
                                         <td class="float-right">
-{{--                                            <label class="">Inspector: </label>--}}
+                                            <label class="required">Map: </label>
+                                        </td>
+                                        @if($earth->map == NULL)
+                                        <td>
+                                            <input type="file" class="form-control form-control-sm {{ $errors->has('map') ? 'is-invalid' : '' }}" name="map" id="map" required>
+                                        </td>
+                                        @else
+                                        <td>
+                                             <img src="{{ asset("storage/".$earth->map) }}" width="250" alt="">
+                                        </td>
+                                        @endif
+                                    </tr>
+                                    <tr>
+                                        <td class="float-right">
                                         </td>
                                         <td>
                                             <input class="form-control form-control-sm" value="{{ Auth::user()->id }}" name="user_id" placeholder="Honore" type="hidden">
@@ -288,20 +307,17 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-6">
-                        <input type="hidden" id="status" class="{{ $errors->has('servedBy') ? 'is-invalid' : '' }}" name="status" id="status" value="2">
+                        <input type="hidden" id="status" class="{{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" value="2">
                     </div>
                     <!-- /.col -->
                 </div>
 
                 <div class="row p-3 justify-content-center" style="">
-                    <a class="btn btn-danger btn-sm  mr-2" href="{{ route('admin.earths.reject', $earth->id) }}" >
-                        Reject
-                    </a>
-                    @if($earth->status == 2)
-                        <button class="btn btn-success btn-sm mr-2" type="submit" disabled >
-                            <i class="fas fa-thumbs-up"></i> &nbsp; Approved
-                        </button>
-                    @else
+
+                    @if($earth->status != 2)
+                        <a class="btn btn-danger btn-sm  mr-2" href="{{ route('admin.earths.reject', $earth->id) }}" >
+                            Reject
+                        </a>
                         <button class="btn btn-primary btn-sm mr-2" type="submit">
                             Approve
                         </button>
@@ -311,9 +327,9 @@
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
                     <div class="col-12">
-                        <button type="button" class="btn btn-primary btn-sm float-right" style="margin: 5px;">
-                            <i class="fas fa-download"></i> Generate PDF
-                        </button>
+                        <a href="{{ route('admin.earths.reports') }}" class="btn btn-primary btn-sm float-right" style="margin: 5px;">
+                            Back
+                        </a>
                     </div>
                 </div>
             </div>
