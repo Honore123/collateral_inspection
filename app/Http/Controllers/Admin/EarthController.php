@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEarthRequest;
 use App\Http\Requests\UpdateEarthRequest;
 use App\Models\Earth;
+use App\Models\PropertyType;
 use App\Models\TenureType;
 use App\Models\User;
 use App\Models\Property;
@@ -150,17 +151,20 @@ class EarthController extends Controller
     public function tenure(){
         return TenureType::all();
     }
+    public function propertyType(){
+        return PropertyType::all();
+    }
 
     public function createPdf(Earth $inspection)
     {
 //        ini_set('max_execution_time', 0);
-        $pdf = PDF::loadView('createPdf',array('inspection'=>$inspection));
-        $pdf->setOptions(['isPhpEnabled'=>true, 'isRemoteEnabled'=>true, 'chroot'=>public_path('/storage/buildings')]);
-        $filename = time().'_'.$inspection->propertyOwner.'.pdf';
-        $pdf->save(public_path('storage/generatedPdf/'.$filename));
+//        $pdf = PDF::loadView('createPdf',array('inspection'=>$inspection));
+//        $pdf->setOptions(['isPhpEnabled'=>true, 'isRemoteEnabled'=>true, 'chroot'=>public_path('/storage/buildings')]);
+//        $filename = time().'_'.$inspection->propertyOwner.'.pdf';
+//        $pdf->save(public_path('storage/generatedPdf/'.$filename));
 
-//        return view('createPdf',['inspection'=>$inspection]);
-        return $filename;
+        return view('createPdf',['inspection'=>$inspection]);
+//        return $filename;
     }
 
 }

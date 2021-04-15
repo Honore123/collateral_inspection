@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePropertyRequest;
+use App\Models\BuildingType;
+use App\Models\Ceiling;
+use App\Models\Doorwindow;
 use App\Models\Elevation;
 use App\Models\Foundation;
+use App\Models\Pavement;
 use App\Models\Property;
 use App\Models\Earth;
 use App\Models\Roof;
@@ -75,5 +79,17 @@ class PropertyController extends Controller
     }
     public function roof(){
         return Roof::all();
+    }
+    public function pavement(){
+        return Pavement::all();
+    }
+    public function ceiling(){
+        return Ceiling::all();
+    }
+    public function closer(){
+        return Doorwindow::all();
+    }
+    public function buildingType(){
+        return BuildingType::all();
     }
 }

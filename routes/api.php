@@ -16,9 +16,13 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 });
 
 //preset data of app property dropdowns api
+Route::get('/buildingType',[PropertyController::class,'buildingType']);
 Route::get('/foundations',[PropertyController::class, 'foundation']);
 Route::get('/elevations',[PropertyController::class, 'elevation']);
 Route::get('/roofs',[PropertyController::class, 'roof']);
+Route::get('/pavements',[PropertyController::class, 'pavement']);
+Route::get('/ceilings',[PropertyController::class, 'ceiling']);
+Route::get('/closers',[PropertyController::class, 'closer']);
 
 //Location api for province, district and other
 Route::get('/province',[EarthController::class,'province']);
@@ -32,6 +36,7 @@ Route::get('/createPdf/{inspection}',[EarthController::class,'createPdf']);
 
 //preset data of app property dropdowns api
 Route::get('/tenures',[EarthController::class, 'tenure']);
+Route::get('/propertyType',[EarthController::class, 'propertyType']);
 
 // Inspections
 Route::get('/inspections', [EarthController::class, 'indexApi']);
