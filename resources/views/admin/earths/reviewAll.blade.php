@@ -2,7 +2,7 @@
 @section('content')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-6">
-                <h4 class="ml-2"> Inspection <small class="text-small text-muted">[ #{{$earth->propertyUPI}} ]</small> </h4>
+                <h4 class="ml-2"> Inspection <small class="text-small text-muted">[ UPI: {{$earth->propertyUPI}} ]</small> </h4>
             </div>
             <div class="col-6">
                 <a class="btn btn-secondary btn-sm float-right mr-2" href="{{ route('admin.earths.reports') }}">
@@ -19,7 +19,7 @@
 
     <div class="card card-outline card-primary" id="card">
         <div class="card-header">
-            Full Inspection list
+            Full Inspection report
         </div>
 
         <div class="card-body">
@@ -153,8 +153,8 @@
                         <div class="col-6">
                             <div class="table-responsive">
                                 <table class="table table-borderless">
-                                    <tbody><tr>
-                                        <td class="float-right"><b>BUILDING 1</b></td>
+                                    <tbody><tr style="border-top: 2px solid black">
+                                        <td class="float-right"><b>BUILDING {{ $loop->iteration++ }}</b></td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -208,10 +208,6 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th class="float-right">Number of building:</th>
-                                        <td>3 building(s) in compound</td>
-                                    </tr>
                                     </tbody></table>
                             </div>
                         </div>
@@ -236,12 +232,21 @@
                                     <tr>
                                         <th class="float-right">Service attached:</th>
                                         <td>
-                                            {{ $properties->otherAttachedServices }}
+                                            <ul>
+                                                @forelse($properties->serviceAttached as $key=>$value)
+                                                    @if($value)
+                                                   <li>{{$key}}</li>
+                                                    @endif
+                                                @empty
+                                                    None
+                                                @endforelse
+                                            </ul>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th class="float-right">Picture:</th>
-                                        <td><img src="{{ asset(".$properties->image.") ?? asset('assets/img/screen.png') }}" width="250" alt=""></td>
+                                        <td><img src="{{ asset("storage/".$properties->image) ?? asset('assets/img/screen.png') }}" width="250" alt=""></td>
                                     </tr>
                                     </tbody></table>
                             </div>
