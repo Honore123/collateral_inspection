@@ -40,7 +40,7 @@
                                 <tr>
                                     <th class="float-right">Property UPI:</th>
                                     <td>
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('propertyUPI') ? 'is-invalid' : '' }}" name="propertyUPI" id="propertyUPI" value="{{ old('propertyUPI', $earth->propertyUPI) }}" >
+                                        <input type="text" class="form-control form-control-plaintext form-control-sm {{ $errors->has('propertyUPI') ? 'is-invalid' : '' }}" readonly name="propertyUPI" id="propertyUPI" value="{{ old('propertyUPI', $earth->propertyUPI) }}" >
                                     </td>
                                 </tr>
                                 <tr>
