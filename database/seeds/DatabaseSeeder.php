@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             RoofSeeder::class,
             TenureTypeSeeder::class,
             DoorWindowSeeder::class,
+            PropertyTypeSeeder::class,
+            BuildingTypeSeeder::class
 
         ]);
         $rwandaAdusPath = './database/files/rwanda_adus.sql';
