@@ -23,7 +23,7 @@
         <!-- /.card-header -->
         <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table m-0">
+                <table class="table datatable datatable-report m-0">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -82,4 +82,16 @@
         </div>
     </div>
 
+@section('scripts')
+    <script>
+        $(function () {
+            $.extend(false, $.fn.dataTable.defaults, {
+                pageLength: 100,
+            });
+            let table = $('.datatable-report:not(.ajaxTable)').DataTable()
+
+        })
+
+    </script>
+@endsection
 @endsection

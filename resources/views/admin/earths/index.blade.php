@@ -401,15 +401,14 @@
         });
     });
 </script>
-{{--<script>--}}
-{{--    $(function () {--}}
-{{--  $.extend(false, $.fn.dataTable.defaults, {--}}
-{{--    order: [[ 1, 'desc' ]],--}}
-{{--    pageLength: 100,--}}
-{{--  });--}}
-{{--  let table = $('.datatable-Earth:not(.ajaxTable)').DataTable()--}}
-{{--  --}}
-{{--})--}}
+<script>
+    $(function () {
+  $.extend(false, $.fn.dataTable.defaults, {
+    pageLength: 100,
+  });
+  let table = $('.datatable-Earth:not(.ajaxTable)').DataTable()
 
-{{--</script>--}}
+})
+
+</script>
 @endsection
