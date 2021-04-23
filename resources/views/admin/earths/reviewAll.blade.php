@@ -89,12 +89,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th class="float-right">Building type:</th>
-                                    <td>
-                                        <label class="rep">*</label>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <th class="float-right">Number of building:</th>
                                     <td>
                                         <label class="rep"> {{ old('nb', $earth->property->count()) }} </label>
@@ -137,6 +131,24 @@
                                         <label class="rep"> {{ old('servedBy', $earth->servedBy) }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th class="float-right">Latitude:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('Latitude', $earth->latitude) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Longitude:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('Longitude', $earth->longitude) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Accuracy:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('Accuracy', number_format($earth->accuracy,0,'.',',').' meters') }}
+                                    </td>
+                                </tr>
                                 </tbody></table>
                         </div>
                     </div>
@@ -165,6 +177,10 @@
                                     <tbody><tr style="border-top: 2px solid black">
                                         <td class="float-right"><b>BUILDING {{ $loop->iteration++ }}</b></td>
                                         <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="float-right">Building Type:</th>
+                                        <td>{{ $properties->buildingType }}</td>
                                     </tr>
                                     <tr>
                                         <th class="float-right">Build up area:</th>
@@ -232,7 +248,7 @@
                                     <tr>
                                         <th class="float-right">Secured by gate:</th>
                                         <td>
-                                            {{ $properties->securedByGate }}
+                                            {{ $properties->securedByGate?'Yes':'No' }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -267,9 +283,9 @@
 
                 <!-- /. B1 -->
 
-                <div class="row">
+                <div class="row ">
                     <div class="col-md-12">
-                        <div class="form-group form-inline">
+                        <div class="form-group form-inline border-top">
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
@@ -277,7 +293,11 @@
                                         <label class="required">Estimated value (Total): </label>
                                     </td>
                                     <td>
-                                        <input class="form-control form-control-sm form-control-plaintext {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" id="value" value="{{ old('value', $earth->value) }}" placeholder="86, 000, 000" required>
+                                        @if($earth->value != null)
+                                             {{number_format($earth->value,0,'.',',')}} RWF
+                                        @else
+                                            <input class="form-control form-control-sm {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" id="value" value="{{ old('value', $earth->value) }}" placeholder="Cash" required>
+                                        @endif
                                     </td>
                                     </tr>
                                     <tr>

@@ -115,7 +115,7 @@
             <td class="value">{{$property->elevation}}</td>
             <td class="location">Picture:</td>
             <td class="value" rowspan="5" >
-                <img src="{{ public_path('storage/'.$property->image) }}" width="250">
+                <img src="{{ public_path('storage/'.$property->image) }}" alt="property image" width="250">
             </td>
         </tr>
         <tr>
@@ -146,7 +146,18 @@
             <td class="last-row"></td>
         </tr>
         @empty
-        <tr></tr>
     @endforelse
+    <tr>
+       <td class="key-align">Estimated Value:</td>
+        <td colspan="3">{{number_format($earth->value,0,'.',',')}} RWF</td>
+    </tr>
+    <tr>
+        <td class="key-align">Location Map:</td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <img src="{{ public_path('storage/'.$earth->map) }}" alt="map" width="100%">
+        </td>
+    </tr>
     </tbody>
 </table>

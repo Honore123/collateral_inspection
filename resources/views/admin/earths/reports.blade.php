@@ -29,9 +29,9 @@
                         <th>#</th>
                         <th>Inspection ID</th>
                         <th>Inspection Date</th>
+                        <th>Property UPI</th>
                         <th>Property type</th>
                         <th>Inspected By</th>
-                        <th>Property UPI</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -39,10 +39,11 @@
                     <tbody>
                     @forelse($earth as $earths)
                     <tr>
-                        <td>1</td>
-                        <td><a href="pages/examples/invoice.html">{{ $earths->id ?? '' }}</a></td>
+                        <td>{{$loop->iteration++}}</td>
+                        <td>CIS000{{$loop->iteration++}}</td>
                         <td>{{ $earths->inspectionDate ?? '' }}</td>
-                        <td>{{ $earths->propertyUPI ?? '' }}</td>
+                        <td>UPI {{ $earths->propertyUPI ?? '' }}</td>
+                        <td>{{ $earths->propertyType ?? '' }}</td>
                         <td>
                             @foreach($users as $user)
                                 @if( $earths->users_id == $user->id )
@@ -52,7 +53,6 @@
                                 @endif
                             @endforeach
                         </td>
-                        <td>{{ $earths->propertyType ?? '' }}</td>
                         <td>
                             @if($earths->status == 0)
                                 <span class="badge badge-warning">Unkown</span>

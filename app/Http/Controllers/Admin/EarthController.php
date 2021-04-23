@@ -70,17 +70,18 @@ class EarthController extends Controller
 
     public function update(UpdateEarthRequest $request, Earth $earth)
     {
-
-        //   Save pdf
-        $pdf = PDF::loadView('createPdf',array('earth'=>$earth));
-        $pdf->setOptions(['isPhpEnabled'=>true, 'isRemoteEnabled'=>true, 'chroot'=>public_path('/storage/buildings')]);
-        $filename = time().'_'.$earth->propertyOwner.'.pdf';
-        $pdf->save(public_path('storage/generatedPdf/'.$filename));
-
         $earth->update([
             'status' => $request->status,
             'value' => $request->value,
             'map' => $request->map->store('maps'),
+        ]);
+        //   Save pdf
+        $pdf = PDF::loadView('createPdf',array('earth'=>$earth));
+        $pdf->setOptions(['isPhpEnabled'=>true, 'isRemoteEnabled'=>true, 'chroot'=>public_path('/storage')]);
+        $filename = time().'_'.$earth->propertyOwner.'.pdf';
+        $pdf->save(public_path('storage/generatedPdf/'.$filename));
+
+        $earth->update([
             'reportFile' => $filename,
         ]);
         return redirect()->route('admin.earths.reports')->with('msg', 'Inspection Approved');
@@ -121,7 +122,7 @@ class EarthController extends Controller
     public function indexApi()
     {
         return Earth::select('id','inspectionDate','propertyUPI','province','district','sector','cell','village','propertyOwner',
-            'tenureType','propertyType','plotSize','encumbranes','mortgaged','servedBy','latitude','longitude','accuracy','status','users_id')->get();
+            'tenureType','propertyType','plotSize','encumbranes','mortgaged','servedBy','latitude','longitude','accuracy','status','users_id','reportFile')->get();
     }
     public function storeApi(Request $request){
         return Earth::create($request->all('inspectionDate','propertyUPI','province','district','sector','cell','village','propertyOwner',
@@ -153,18 +154,6 @@ class EarthController extends Controller
     }
     public function propertyType(){
         return PropertyType::all();
-    }
-
-    public function createPdf(Earth $inspection)
-    {
-//        ini_set('max_execution_time', 0);
-//        $pdf = PDF::loadView('createPdf',array('inspection'=>$inspection));
-//        $pdf->setOptions(['isPhpEnabled'=>true, 'isRemoteEnabled'=>true, 'chroot'=>public_path('/storage/buildings')]);
-//        $filename = time().'_'.$inspection->propertyOwner.'.pdf';
-//        $pdf->save(public_path('storage/generatedPdf/'.$filename));
-
-        return view('createPdf',['inspection'=>$inspection]);
-//        return $filename;
     }
 
 }

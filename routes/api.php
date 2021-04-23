@@ -1,20 +1,14 @@
 <?php
 use App\Http\Controllers\Admin\EarthController;
 use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\AuthController;
 
-Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
-    // Permissions
-    Route::apiResource('permissions', 'PermissionsApiController');
+//Protected Routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    // Roles
-    Route::apiResource('roles', 'RolesApiController');
-
-    // Users
-    Route::apiResource('users', 'UsersApiController');
 
 
 });
-
 //preset data of app property dropdowns api
 Route::get('/buildingType',[PropertyController::class,'buildingType']);
 Route::get('/foundations',[PropertyController::class, 'foundation']);
@@ -31,9 +25,6 @@ Route::get('/sector/{district}',[EarthController::class,'sector']);
 Route::get('/cell/{sector}',[EarthController::class,'cell']);
 Route::get('/village/{cell}',[EarthController::class,'village']);
 
-// api for creating report pdf file and downloading it.
-Route::get('/createPdf/{inspection}',[EarthController::class,'createPdf']);
-
 //preset data of app property dropdowns api
 Route::get('/tenures',[EarthController::class, 'tenure']);
 Route::get('/propertyType',[EarthController::class, 'propertyType']);
@@ -47,3 +38,11 @@ Route::put('/inspections/{earth}', [EarthController::class, 'updateStatusApi']);
 // Property
 Route::get('/property/{id}', [PropertyController::class, 'indexApi']);
 Route::post('/property/{id}', [PropertyController::class, 'storeApi']);
+
+Route::post('users/logout', [AuthController::class, 'logout']);
+
+//Public Routes
+//Authentication APIs
+Route::post('users/login', [AuthController::class, 'login']);
+
+
