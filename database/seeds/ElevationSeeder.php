@@ -12,17 +12,14 @@ class ElevationSeeder extends Seeder
     public function run()
     {
         collect([
-            'RC  lintel',
-            'RC floor',
-            'RC ground beams',
-            'RC columns',
-            'Wall elevation in cob',
-            'Dry bricks wall with land mortar',
-            'Frames in Bricks wall with ciment mortar',
-            'Bricks wall with land mortar(amatafari ahiye+Icyondo)',
-            'Ciment bricks wall (buroki+sima)',
-            'Ruliba bricks wall',
-            'Claustra',
+            'Mud Blocks',
+            'Burnt Bricks',
+            'Concrete Wall',
+            'Cement Brocks',
+            'Stones Masonry',
+            'Timber',
+            'Wooden',
+
 
         ])->each(function ($elevation){
             Elevation::firstOrCreate(['elevation_name'=>$elevation]);

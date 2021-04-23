@@ -6,6 +6,12 @@ use App\Http\Controllers\AuthController;
 //Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
+    // Inspections
+    Route::get('/inspections/{userId}', [EarthController::class, 'indexApi']);
+    Route::post('/inspections',[EarthController::class, 'storeApi']);
+    Route::put('/inspections/{earth}', [EarthController::class, 'updateStatusApi']);
+
+    Route::post('users/logout', [AuthController::class, 'logout']);
 
 
 });
@@ -29,17 +35,12 @@ Route::get('/village/{cell}',[EarthController::class,'village']);
 Route::get('/tenures',[EarthController::class, 'tenure']);
 Route::get('/propertyType',[EarthController::class, 'propertyType']);
 
-// Inspections
-Route::get('/inspections', [EarthController::class, 'indexApi']);
-Route::post('/inspections',[EarthController::class, 'storeApi']);
-Route::put('/inspections/{earth}', [EarthController::class, 'updateStatusApi']);
-
 
 // Property
 Route::get('/property/{id}', [PropertyController::class, 'indexApi']);
 Route::post('/property/{id}', [PropertyController::class, 'storeApi']);
 
-Route::post('users/logout', [AuthController::class, 'logout']);
+
 
 //Public Routes
 //Authentication APIs

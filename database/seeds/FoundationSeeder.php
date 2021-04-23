@@ -12,16 +12,10 @@ class FoundationSeeder extends Seeder
     public function run()
     {
         collect([
-            'Levelling',
-            'Foundation excavation',
-            'Ruble stones with ciment mortar',
-            'Ruble stones with land mortar',
-            'Foundation with dry bricks',
-            'Retaining wall',
-            'Foundation in concrete',
-            'Foundation in reinforced concrete',
-            'Screed on foundation(chape en ciment)',
-            'Roofing'
+            'Stones Foundation',
+            'Bricks Foundation',
+            'Concrete Foundation',
+
 
         ])->each(function($foundation){
             Foundation::firstOrCreate(["foundation_name"=>$foundation]);

@@ -13,17 +13,12 @@ class CeilingSeeder extends Seeder
     public function run()
     {
         collect([
-            'In reed',
-            'In papyrus',
-            'In sheet metal',
-            'In triplex',
-            'In unalit on wood',
-            'In beam',
-            'Arabian',
-            'In reinforced concrete with wiremesh',
-            'Eternit sheet on wood',
-            'In strip',
-            'In cartons'
+            'Plywood Ceiling',
+            'Gypsum Ceiling',
+            'Wooden Ceiling',
+            'Acoustic Ceiling',
+            'China Light Weight Ceiling PVC',
+
 
         ])->each(function($ceiling){
             Ceiling::firstOrCreate(["ceiling_name"=>$ceiling]);

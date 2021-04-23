@@ -13,18 +13,8 @@ class DoorWindowSeeder extends Seeder
     public function run()
     {
         collect([
-            'Simple door',
-            'Door in simple wood',
-            'Door in triplex',
-            'Door in beam',
-            'Door in libuyu',
-            'Door in special wood',
-            'Door in cypress',
-            'Door in Umusave',
-            'Simple metallic door with wire netting',
-            'Double metallic door with wire netting ',
-            'Gate'
-
+            'Timber',
+            'Metallic',
         ])->each(function($doorwindow){
             Doorwindow::firstOrCreate(["doorwindow"=>$doorwindow]);
         });

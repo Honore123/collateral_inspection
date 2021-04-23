@@ -13,12 +13,10 @@ class RoofSeeder extends Seeder
     public function run()
     {
         collect([
-            'In simple sheet metal on wood',
-            'In strong sheet metal on wood',
-            'In strong sheet metal on beam',
-            'strong sheet metal on metallic framework',
-            'Metallic gutter',
-            'Planche de rive en bois'
+            'Clay Tiles',
+            'Concrete Tiles',
+            'Metal Sheets',
+
 
         ])->each(function ($roof){
             Roof::firstOrCreate(["roof_name"=>$roof]);
