@@ -69,11 +69,6 @@
                         </td>
                     </tr>
                     @empty
-                        <tr>
-                            <td colspan="8" class="text text-center">
-                                No Inspection to Show now :(
-                            </td>
-                        </tr>
                     @endforelse
                     </tbody>
                 </table>
