@@ -119,10 +119,11 @@ class EarthController extends Controller
     }
 
     // apis For mobile application
-    public function indexApi()
+    public function indexApi($userId)
     {
         return Earth::select('id','inspectionDate','propertyUPI','province','district','sector','cell','village','propertyOwner',
-            'tenureType','propertyType','plotSize','encumbranes','mortgaged','servedBy','latitude','longitude','accuracy','status','users_id','reportFile')->get();
+            'tenureType','propertyType','plotSize','encumbranes','mortgaged','servedBy','latitude','longitude','accuracy','status','users_id','reportFile')
+            ->where('users_id',$userId)->get();
     }
     public function storeApi(Request $request){
         return Earth::create($request->all('inspectionDate','propertyUPI','province','district','sector','cell','village','propertyOwner',

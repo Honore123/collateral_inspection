@@ -13,17 +13,13 @@ class PavementSeeder extends Seeder
     public function run()
     {
         collect([
-            'Under ornemental tiling in bricks regrout by ciment mortar',
-            'Under ornemental tiling in bricks',
-            'Under ornemental tiling in stones',
-            'Underornemental in concrete',
-            'Underornemental in reinforced concrete',
-            'Screed lissee',
-            'Screed talochee',
-            'Ornemental tiling in tile',
-            'Screed on foundation(chape en ciment)',
-            'Pavement revetu de floorflex',
-            'Ornemental in wood'
+            'Stones Pavement',
+            'Concrete Pavement',
+            'Ceramic Tiles Pavement',
+            'Screed Cement Pavement',
+            'Rough Cement Pavement',
+            'Asphalt Pavement',
+
 
         ])->each(function($pavement){
             Pavement::firstOrCreate(["pavement_name"=>$pavement]);
