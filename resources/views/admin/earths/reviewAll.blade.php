@@ -268,7 +268,22 @@
                                     </tr>
                                     <tr>
                                         <th class="float-right">Picture:</th>
-                                        <td><img src="{{ asset("storage/".$properties->image) }}" width="250" alt=""></td>
+                                        <td>
+                                            <div class="containerZoom float-left">
+                                                <img src="{{ asset("storage/".$properties->image) }}" class="p-sm-1 myImg1" id="myImg1" width="180" alt="Image 1">
+                                                <img src="{{ asset("storage/".$properties->image) }}" class="p-sm-1" id="myImg2" width="180" alt="Image 2">
+                                                <img src="{{ asset("storage/".$properties->image) }}" class="p-sm-1" id="myImg3" width="180" alt="Image 3">
+                                                <img src="{{ asset("storage/".$properties->image) }}" class="p-sm-1" id="myImg4" width="180" alt="Image 4">
+                                                <br>
+                                                <span class="text text-danger text-xs"><i class="fa fas-info"></i> Click image to Zoom</span>
+                                            </div>
+                                            <!-- The Modal -->
+                                            <div id="myModali" class="modali">
+                                                <span class="close">&times;</span>
+                                                <img class="modal-contenti" id="img01">
+                                                <div id="caption"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     </tbody></table>
                             </div>
@@ -310,9 +325,21 @@
                                         </td>
                                         @else
                                         <td>
-                                             <img src="{{ asset("storage/".$earth->map) }}" width="250" alt="">
+                                             <img src="{{ asset("storage/".$earth->map) }}" id="imageZoom" width="250" alt="">
                                         </td>
                                         @endif
+                                    </tr>
+                                    <tr>
+                                        <td class="float-right">
+                                            <label class="required">Comment: </label>
+                                        </td>
+                                        <td>
+                                            @if($earth->comment != null)
+                                                <i> {{ $earth->comment }} </i>
+                                            @else
+                                                <textarea class="form-control form-control-sm" name="comment" id="comment" placeholder="Comment" style="margin: 0px;width: 410px;height: 110px;"></textarea>
+                                            @endif
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="float-right">
@@ -347,8 +374,11 @@
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
                     <div class="col-12">
-                        <a href="{{ route('admin.earths.reports') }}" class="btn btn-primary btn-sm float-right" style="margin: 5px;">
+                        <a href="{{ route('admin.earths.reports') }}" class="btn btn-default btn-sm float-left" style="margin: 5px;">
                             Back
+                        </a>
+                        <a href="{{ asset("storage/generatedPdf/".$earth->reportFile) }}" class="btn btn-primary btn-sm float-right" style="margin: 5px;" target="_blank" download >
+                            <i class="fas fa-download"></i> Download PDF
                         </a>
                     </div>
                 </div>
@@ -358,5 +388,58 @@
     </div>
 
     </form>
+
+@section('scripts')
+    @parent
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModali");
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        // var img1 = document.getElementById("myImg1");
+        // var img1 = document.getElementsByClassName("myImg1")[0][1];
+        Array.from(document.getElementsByClassName("myImg1")).forEach(
+            function(element, index, array) {
+                // do stuff
+            }
+        );
+        var img2 = document.getElementById("myImg2");
+        var img3 = document.getElementById("myImg3");
+        var img4 = document.getElementById("myImg4");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        img1.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+
+        img2.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+
+        img3.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+
+        img4.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+    </script>
+@endsection
 
 @endsection

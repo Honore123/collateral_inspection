@@ -113,10 +113,7 @@
         <tr>
             <td class="key-align">Elevation:</td>
             <td class="value">{{$property->elevation}}</td>
-            <td class="location">Picture:</td>
-            <td class="value" rowspan="5" >
-                <img src="{{ public_path('storage/'.$property->image) }}" alt="property image" width="250">
-            </td>
+            {{--    Photo    --}}
         </tr>
         <tr>
             <td class="key-align">Roof:</td>
@@ -150,6 +147,12 @@
     <tr>
        <td class="key-align">Estimated Value:</td>
         <td colspan="3">{{number_format($earth->value,0,'.',',')}} RWF</td>
+    </tr>
+    <tr>
+        <td class="location">Picture:</td>
+        <td class="value" colspan="5" >
+            <img src="{{ public_path('storage/'.$property->image) }}" alt="property image" width="250">
+        </td>
     </tr>
     <tr>
         <td class="key-align">Location Map:</td>

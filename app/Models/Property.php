@@ -12,7 +12,9 @@ class Property extends Model
 
     public $table = 'properties';
     protected $casts = [
-        'serviceAttached' => 'array'
+        'serviceAttached' => 'array',
+        'internal' => 'array',
+        'external' => 'array'
     ];
 
     protected $dates = [

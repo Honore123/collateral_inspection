@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Earth;
 use App\Models\User;
+use App\Models\Property;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class HomeController
@@ -39,7 +40,7 @@ class HomeController
             'chart_title'           => 'Members',
             'chart_type'            => 'number_block',
             'report_type'           => 'group_by_date',
-            'model'                 => 'App\Models\Earth',
+            'model'                 => 'App\Models\User',
             'group_by_field'        => '',
             'group_by_period'       => 'day',
             'aggregate_function'    => 'count',

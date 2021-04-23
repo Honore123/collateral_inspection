@@ -73,6 +73,7 @@ class EarthController extends Controller
         $earth->update([
             'status' => $request->status,
             'value' => $request->value,
+            'comment' => $request->comment,
             'map' => $request->map->store('maps'),
         ]);
         //   Save pdf
@@ -109,6 +110,15 @@ class EarthController extends Controller
         ]);
 
         return redirect()->route('admin.earths.reports')->with('msg', 'Inspection rejected');
+    }
+
+    public function modify(Earth $earth)
+    {
+        $earth->update([
+            'status' => 4
+        ]);
+
+        return redirect()->route('admin.earths.reports')->with('msg', 'Done');
     }
 
 

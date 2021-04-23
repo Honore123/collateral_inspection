@@ -19,7 +19,6 @@
                         <span class="info-box-text">{{ $settings1['chart_title'] }}</span>
                         <span class="info-box-number">
                   {{ number_format($settings1['total_number']) }}
-                  <small>%</small>
                 </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -88,7 +87,7 @@
                         <div class="table-responsive table-responsive-sm">
                             <table class="table m-0">
                                 <thead>
-                                <tr>
+                                <tr style="font-size: smaller">
                                     <th>Inspection ID</th>
                                     <th>Inspection Date</th>
                                     <th>Property type</th>
@@ -172,16 +171,16 @@
 @endsection
 
 @section('fccss')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet"/>
+<link href="{{ asset('vendors/bootstrap/bootstrap-datepicker.standalone.min.css') }}" rel="stylesheet"/>
 @endsection
 
 @section('fcjs')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ asset('vendors/bootstrap/bootstrap-datepicker.min.js') }}"></script>
 @endsection
 
 @section('scripts')
 @parent
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="{{ asset('vendors/jquery/Chart.min.js') }}"></script>
 <script>
 
   $('#calendar').datepicker({
