@@ -23,9 +23,6 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.id') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.user.fields.name') }}
                         </th>
                         <th>
@@ -43,13 +40,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                @php
+                $i = 1;
+                @endphp
                     @foreach($users as $key => $user)
                         <tr data-entry-id="{{ $user->id }}">
                             <td>
-
-                            </td>
-                            <td>
-                                {{ $user->id ?? '' }}
+                                {{$i++}}
                             </td>
                             <td>
                                 {{ $user->name ?? '' }}

@@ -1,7 +1,6 @@
 <?php
-use App\Http\Controllers\Admin\EarthController;
+
 Route::redirect('/', '/login');
-Route::get('/generatePdf/{inspection}',[EarthController::class,'createPdf']);
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
