@@ -221,13 +221,29 @@
                                     <tr>
                                         <th class="float-right">Internal finishing:</th>
                                         <td>
-                                            {{ $properties->internal }}
+                                            <ul>
+                                                @forelse($properties->internal as $key=>$value)
+                                                    @if($value)
+                                                        <li>{{$key}}</li>
+                                                    @endif
+                                                @empty
+                                                    None
+                                                @endforelse
+                                            </ul>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th class="float-right">External finishing:</th>
                                         <td>
-                                            {{ $properties->external }}
+                                            <ul>
+                                                @forelse($properties->external as $key=>$value)
+                                                    @if($value)
+                                                        <li>{{$key}}</li>
+                                                    @endif
+                                                @empty
+                                                    None
+                                                @endforelse
+                                            </ul>
                                         </td>
                                     </tr>
                                     </tbody></table>
@@ -270,12 +286,20 @@
                                         <th class="float-right">Picture:</th>
                                         <td>
                                             <div class="containerZoom float-left">
-                                                <img src="{{ asset("storage/".$properties->image) }}" class="p-sm-1 myImg1" id="myImg1" width="180" alt="Image 1">
-                                                <img src="{{ asset("storage/".$properties->image) }}" class="p-sm-1" id="myImg2" width="180" alt="Image 2">
-                                                <img src="{{ asset("storage/".$properties->image) }}" class="p-sm-1" id="myImg3" width="180" alt="Image 3">
-                                                <img src="{{ asset("storage/".$properties->image) }}" class="p-sm-1" id="myImg4" width="180" alt="Image 4">
+                                                <a class="venobox" href="{{ asset("storage/".$properties->image1) }}" data-gall="myGallery">
+                                                    <img src="{{ asset("storage/".$properties->image1) }}" class="p-sm-1" width="180" alt="Image 1">
+                                                </a>
+                                                <a class="venobox" href="{{ asset("storage/".$properties->image2) }}" data-gall="myGallery">
+                                                    <img src="{{ asset("storage/".$properties->image2) }}" class="p-sm-1" width="180" alt="Image 2">
+                                                </a>
+                                                <a class="venobox" href="{{ asset("storage/".$properties->image3) }}" data-gall="myGallery">
+                                                    <img src="{{ asset("storage/".$properties->image3) }}" class="p-sm-1" width="180" alt="Image 3">
+                                                </a>
+                                                <a class="venobox" href="{{ asset("storage/".$properties->image4) }}" data-gall="myGallery">
+                                                    <img src="{{ asset("storage/".$properties->image4) }}" class="p-sm-1" width="180" alt="Image 4">
+                                                </a>
                                                 <br>
-                                                <span class="text text-danger text-xs"><i class="fa fas-info"></i> Click image to Zoom</span>
+                                                <span class="text text-sm">Click to zoom</span>
                                             </div>
                                             <!-- The Modal -->
                                             <div id="myModali" class="modali">
@@ -325,7 +349,10 @@
                                         </td>
                                         @else
                                         <td>
-                                             <img src="{{ asset("storage/".$earth->map) }}" id="imageZoom" width="250" alt="">
+                                            <a class="venobox" href="{{ asset("storage/".$earth->map) }}">
+                                                <img src="{{ asset("storage/".$earth->map) }}" id="imageZoom" width="250" alt="">
+                                            </a> <br>
+                                            <span class="text text-sm">Click to zoom</span>
                                         </td>
                                         @endif
                                     </tr>
@@ -377,9 +404,11 @@
                         <a href="{{ route('admin.earths.reports') }}" class="btn btn-default btn-sm float-left" style="margin: 5px;">
                             Back
                         </a>
-                        <a href="{{ asset("storage/generatedPdf/".$earth->reportFile) }}" class="btn btn-primary btn-sm float-right" style="margin: 5px;" target="_blank" download >
-                            <i class="fas fa-download"></i> Download PDF
-                        </a>
+                        @if($earth->reportFile != NULL)
+                            <a href="{{ asset("storage/generatedPdf/".$earth->reportFile) }}" class="btn btn-primary btn-sm float-right" style="margin: 5px;" target="_blank" download >
+                                <i class="fas fa-download"></i> Download PDF
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -388,52 +417,21 @@
     </div>
 
     </form>
-
+@section('styles')
+    <link href="{{ asset('vendors/venobox/venobox.min.css')}}" type="text/css" rel="stylesheet" />
+@endsection
 @section('scripts')
     @parent
+    <script src="{{ asset('vendors/venobox/venobox.min.js')}}"></script>
     <script>
-        // Get the modal
-        var modal = document.getElementById("myModali");
-
-        // Get the image and insert it inside the modal - use its "alt" text as a caption
-        // var img1 = document.getElementById("myImg1");
-        var img1 = document.getElementsByClassName("myImg1")[0];
-        var img2 = document.getElementById("myImg2");
-        var img3 = document.getElementById("myImg3");
-        var img4 = document.getElementById("myImg4");
-        var modalImg = document.getElementById("img01");
-        var captionText = document.getElementById("caption");
-        img1.onclick = function(){
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
-        }
-
-        img2.onclick = function(){
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
-        }
-
-        img3.onclick = function(){
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
-        }
-
-        img4.onclick = function(){
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
-        }
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
+        $(document).ready(function(){
+            $('.venobox').venobox({
+                framewidth : '800px',                            // default: ''
+                frameheight: '600px',                            // default: ''
+                border     : '8px',                             // default: '0'
+                infinigall : true,                               // default: false
+            });
+        });
     </script>
 @endsection
 

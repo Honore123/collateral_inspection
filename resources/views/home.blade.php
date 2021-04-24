@@ -100,7 +100,7 @@
                                 <tbody>
                                 @forelse($earths as $earth)
                                     <tr>
-                                        <td><a href="{{ route('admin.earths.reviewAll', $earth->id) }}">#{{ $earth->id ?? '' }}</a></td>
+                                        <td><a href="{{ route('admin.earths.reviewAll', $earth->id) }}">#CIS00{{ $earth->id ?? '' }}</a></td>
                                         <td>{{ $earth->inspectionDate ?? '' }}</td>
                                         <td>{{ $earth->propertyUPI ?? '' }}</td>
 {{--                                        <td>--}}

@@ -48,6 +48,10 @@ class EarthController extends Controller
     	$earth->longitude = 0;
     	$earth->status = 1;
         $earth->users_id = $request->users_id;
+        $earth->map = NULL;
+        $earth->value = NULL;
+        $earth->reportFile = NULL;
+        $earth->comment = NULL;
     	$earth->accuracy = 0;
     	$earth->save();
     	return ["msg"=>"Inspection Data saved"];
@@ -119,6 +123,15 @@ class EarthController extends Controller
         ]);
 
         return redirect()->route('admin.earths.reports')->with('msg', 'Done');
+    }
+
+    public function destroy(Earth $earth)
+    {
+        abort_if(Gate::denies('earth_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $earth->delete();
+
+        return back()->with('msg', 'Inspection Deleted');
     }
 
 
