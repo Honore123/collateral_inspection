@@ -73,43 +73,43 @@ class PermissionsTableSeeder extends Seeder
                 'title' => 'user_access',
             ],
             [
-                'id'    => 39,
+                'id'    => 17,
                 'title' => 'audit_log_show',
             ],
             [
-                'id'    => 40,
+                'id'    => 18,
                 'title' => 'audit_log_access',
             ],
             [
-                'id'    => 41,
+                'id'    => 19,
                 'title' => 'profile_password_edit',
             ],
             [
-                'id'    => 42,
+                'id'    => 20,
                 'title' => 'earth_access',
             ],
             [
-                'id'    => 43,
+                'id'    => 21,
                 'title' => 'earth_create',
             ],
             [
-                'id'    => 44,
+                'id'    => 22,
                 'title' => 'earth_edit',
             ],
             [
-                'id'    => 45,
+                'id'    => 23,
                 'title' => 'earth_show',
             ],
             [
-                'id'    => 46,
+                'id'    => 24,
                 'title' => 'earth_delete',
             ],
             [
-                'id'    => 47,
+                'id'    => 25,
                 'title' => 'property_access',
             ],
             [
-                'id'    => 48,
+                'id'    => 26,
                 'title' => 'report_access',
             ],
         ];

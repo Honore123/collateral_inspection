@@ -133,11 +133,31 @@
         </tr>
         <tr>
             <td class="key-align">Internal Finishing:</td>
-            <td class="value">{{$property->internal}}</td>
+            <td class="value">
+                <ul>
+                    @forelse($property->internal as $key=>$value)
+                        @if($value)
+                            <li>{{$key}}</li>
+                        @endif
+                    @empty
+                        None
+                    @endforelse
+                </ul>
+            </td>
         </tr>
         <tr>
             <td class="key-align">External Finishing:</td>
-            <td class="value">{{$property->external}}</td>
+            <td class="value">
+                <ul>
+                    @forelse($property->external as $key=>$value)
+                        @if($value)
+                            <li>{{$key}}</li>
+                        @endif
+                    @empty
+                        None
+                    @endforelse
+                </ul>
+            </td>
         </tr>
         <tr>
             <td class="last-row"></td>
@@ -150,8 +170,11 @@
     </tr>
     <tr>
         <td class="location">Picture:</td>
-        <td class="value" colspan="5" >
-            <img src="{{ public_path('storage/'.$property->image) }}" alt="property image" width="250">
+        <td class="value float-left" colspan="5" >
+            <img src="{{ public_path('storage/'.$property->image1) }}" alt="property image" width="500">
+            <img src="{{ public_path('storage/'.$property->image2) }}" alt="property image" width="500">
+            <img src="{{ public_path('storage/'.$property->image3) }}" alt="property image" width="500">
+            <img src="{{ public_path('storage/'.$property->image4) }}" alt="property image" width="500">
         </td>
     </tr>
     <tr>
