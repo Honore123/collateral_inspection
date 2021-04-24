@@ -64,10 +64,19 @@ class PropertyController extends Controller
     public function storeApi(Request $request, $id)
     {
 
-        $path =  $request->file('photo')->store('buildings');
+        $image1 =  $request->file('image1')->store('buildings');
+
+        $image2 =  $request->file('image2')->store('buildings');
+
+        $image3 =  $request->file('image3')->store('buildings');
+
+        $image4 =  $request->file('image4')->store('buildings');
 
         $buildingData = json_decode($request->info, true);
-        $buildingData['image'] = $path;
+        $buildingData['image1'] = $image1;
+        $buildingData['image2'] = $image2;
+        $buildingData['image3'] = $image3;
+        $buildingData['image4'] = $image4;
 
         return Property::create($buildingData);
     }
