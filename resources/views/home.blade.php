@@ -107,21 +107,19 @@
 {{--                                            @foreach($users as $user)--}}
 {{--                                                @if( $earth->users_id == $user->id )--}}
 {{--                                                    {{ $user->name ?? ''}}--}}
-{{--                                                @else--}}
-{{--                                                    No user found--}}
 {{--                                                @endif--}}
 {{--                                            @endforeach--}}
 {{--                                        </td>--}}
                                         <td>{{ $earth->propertyType ?? '' }}</td>
                                         <td>
-                                            @if($earth->status == 0)
-                                                <span class="badge badge-warning">Unkown</span>
-                                            @elseif($earth->status == 1)
+                                            @if($earth->status == 1)
                                                 <span class="badge badge-warning">Pending</span>
                                             @elseif($earth->status == 2)
                                                 <span class="badge badge-success">Approved</span>
                                             @elseif($earth->status == 3)
                                                 <span class="badge badge-danger">Rejected</span>
+                                            @elseif($earth->status == 4)
+                                                <span class="badge badge-info">Modify</span>
                                             @endif
                                         </td>
                                         <td>

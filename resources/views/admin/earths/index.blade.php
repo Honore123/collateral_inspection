@@ -69,15 +69,9 @@
                                 {{ $earth->propertyType ?? '' }}
                             </td>
                             <td>
-{{--                                @if( $earth->user()->id ==$earth->users_id )--}}
-{{--                                    {{ $users->name ?? ''}}--}}
-{{--                                @endif--}}
-{{--{{ $users->name ?? ''}}--}}
                                 @foreach($users as $user)
                                     @if( $earth->users_id == $user->id )
                                         {{ $user->name ?? ''}}
-                                    @else
-                                        No user found
                                     @endif
                                 @endforeach
                             </td>
@@ -91,8 +85,8 @@
                                     <span class="badge badge-success">Approved</span>
                                 @elseif($earth->status == 3)
                                     <span class="badge badge-danger">Rejected</span>
-                                @else
-                                    <span class="badge badge-info">Unknown</span>
+                                @elseif($earth->status == 4)
+                                    <span class="badge badge-info">Modify</span>
                                 @endif
                             </td>
                             <td style="width: max-content;">

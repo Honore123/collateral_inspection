@@ -122,7 +122,7 @@ class EarthController extends Controller
             'status' => 4
         ]);
 
-        return redirect()->route('admin.earths.reports')->with('msg', 'Done');
+        return redirect()->route('admin.earths.reports')->with('msg', 'Review sent successfully');
     }
 
     public function destroy(Earth $earth)
