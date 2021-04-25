@@ -48,20 +48,20 @@
                             @foreach($users as $user)
                                 @if( $earths->users_id == $user->id )
                                     {{ $user->name ?? ''}}
-                                @else
-                                    No user found
                                 @endif
                             @endforeach
                         </td>
                         <td>
                             @if($earths->status == 0)
-                                <span class="badge badge-warning">Unkown</span>
+                                <span class="badge badge-warning">Unknown</span>
                             @elseif($earths->status == 1)
                                 <span class="badge badge-warning">Pending</span>
                             @elseif($earths->status == 2)
                                 <span class="badge badge-success">Approved</span>
                             @elseif($earths->status == 3)
                                 <span class="badge badge-danger">Rejected</span>
+                            @elseif($earths->status == 4)
+                                <span class="badge badge-info">Modify</span>
                             @endif
                         </td>
                         <td>
