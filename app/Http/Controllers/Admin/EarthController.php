@@ -145,12 +145,16 @@ class EarthController extends Controller
     public function indexApi($userId)
     {
         return Earth::select('id','inspectionDate','propertyUPI','province','district','sector','cell','village','propertyOwner',
-            'tenureType','propertyType','plotSize','encumbranes','mortgaged','servedBy','latitude','longitude','accuracy','status','users_id','reportFile')
+            'tenureType','propertyType','plotSize','encumbranes','mortgaged','servedBy','latitude','longitude','accuracy','status','comment','users_id','reportFile')
             ->where('users_id',$userId)->get();
     }
     public function storeApi(Request $request){
         return Earth::create($request->all('inspectionDate','propertyUPI','province','district','sector','cell','village','propertyOwner',
             'tenureType','propertyType','plotSize','encumbranes','mortgaged','servedBy','latitude','longitude','accuracy','status','users_id'));
+    }
+    public function updateApi(Request$request, Earth $earth){
+       $earth->update($request->all());
+       return $earth;
     }
     public function updateStatusApi(Request $request,Earth $earth)
     {
