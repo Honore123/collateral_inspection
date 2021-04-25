@@ -301,12 +301,6 @@
                                                 <br>
                                                 <span class="text text-sm">Click to zoom</span>
                                             </div>
-                                            <!-- The Modal -->
-                                            <div id="myModali" class="modali">
-                                                <span class="close">&times;</span>
-                                                <img class="modal-contenti" id="img01">
-                                                <div id="caption"></div>
-                                            </div>
                                         </td>
                                     </tr>
                                     </tbody></table>
@@ -395,6 +389,9 @@
                         <button class="btn btn-primary btn-sm mr-2" type="submit">
                             Approve
                         </button>
+                        <a class="btn btn-info btn-sm  mr-2" href="{{ route('admin.earths.modify', $earth->id) }}" >
+                            Modify
+                        </a>
                     @endif
                 </div>
 

@@ -42,7 +42,7 @@
         <td class="key-align">Property UPI:</td>
         <td class="value">{{$earth->propertyUPI}}</td>
         <td class="location">District:</td>
-        <td class="value">{{$earth->propertyUPI}}</td>
+        <td class="value">{{$earth->district}}</td>
     </tr>
     <tr>
         <td class="key-align">Owner:</td>
