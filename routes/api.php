@@ -10,7 +10,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/inspections/{userId}', [EarthController::class, 'indexApi']);
     Route::post('/inspections',[EarthController::class, 'storeApi']);
     Route::put('/inspections/{earth}', [EarthController::class, 'updateStatusApi']);
-
+    Route::put('/inspections/modify/{earth}', [EarthController::class, 'updateApi']);
     Route::post('users/logout', [AuthController::class, 'logout']);
 
 
