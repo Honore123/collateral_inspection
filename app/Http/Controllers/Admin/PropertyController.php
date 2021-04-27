@@ -63,14 +63,22 @@ class PropertyController extends Controller
     }
     public function storeApi(Request $request, $id)
     {
-
-        $image1 =  $request->file('image1')->store('buildings');
-
-        $image2 =  $request->file('image2')->store('buildings');
-
-        $image3 =  $request->file('image3')->store('buildings');
-
-        $image4 =  $request->file('image4')->store('buildings');
+        $image1 =  null;
+        $image2 = null;
+        $image3 =  null;
+        $image4 =  null;
+        if ($request->file('image1') != null){
+            $image1 =  $request->file('image1')->store('buildings');
+        }
+        if ($request->file('image2') != null){
+            $image2 =  $request->file('image2')->store('buildings');
+        }
+        if($request->file('image3') != null){
+            $image3 =  $request->file('image3')->store('buildings');
+        }
+        if($request->file('image4') != null){
+            $image4 =  $request->file('image4')->store('buildings');
+        }
 
         $buildingData = json_decode($request->info, true);
         $buildingData['image1'] = $image1;
