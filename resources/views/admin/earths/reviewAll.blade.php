@@ -155,6 +155,7 @@
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
+            @if($earth->propertyType == 'Land with Building')
                 @if($earth->property->count() == 0)
                     <div class="row">
                         <div class="col-6">
@@ -310,9 +311,63 @@
                     </div>
                 @endforeach
                 @endif
-
-
-
+            @else
+                    @foreach($land as $lands )
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless">
+                                        <tbody><tr style="border-top: 2px solid black">
+                                            <td class="float-right"><b>LAND {{ $loop->iteration++ }}</b></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="float-right">Current Usage:</th>
+                                            <td>{{ $lands->currentUsage }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="float-right">Plot Size:</th>
+                                            <td>{{ $earth->plotSize }} Sqm</td>
+                                        </tr>
+                                        </tbody></table>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-6">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                        <tr>
+                                            <td>.</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="float-right">Picture:</th>
+                                            <td>
+                                                <div class="containerZoom float-left">
+                                                    <a class="venobox" href="{{ asset("storage/".$lands->image1) }}" data-gall="myGallery">
+                                                        <img src="{{ asset("storage/".$lands->image1) }}" class="p-sm-1" width="180" alt="Image 1">
+                                                    </a>
+                                                    <a class="venobox" href="{{ asset("storage/".$lands->image2) }}" data-gall="myGallery">
+                                                        <img src="{{ asset("storage/".$lands->image2) }}" class="p-sm-1" width="180" alt="Image 2">
+                                                    </a>
+                                                    <a class="venobox" href="{{ asset("storage/".$lands->image3) }}" data-gall="myGallery">
+                                                        <img src="{{ asset("storage/".$lands->image3) }}" class="p-sm-1" width="180" alt="Image 3">
+                                                    </a>
+                                                    <a class="venobox" href="{{ asset("storage/".$lands->image4) }}" data-gall="myGallery">
+                                                        <img src="{{ asset("storage/".$lands->image4) }}" class="p-sm-1" width="180" alt="Image 4">
+                                                    </a>
+                                                    <br>
+                                                    <span class="text text-sm">Click to zoom</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody></table>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    @endforeach
+            @endif
 
                 <!-- /. B1 -->
                 @can('admin')

@@ -81,6 +81,8 @@
     <script>
         $(function () {
             $.extend(false, $.fn.dataTable.defaults, {
+                orderCellsTop: true,
+                order: [[ 1, 'desc' ]],
                 pageLength: 100,
             });
             let table = $('.datatable-report:not(.ajaxTable)').DataTable()

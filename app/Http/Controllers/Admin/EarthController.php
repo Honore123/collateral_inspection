@@ -10,6 +10,7 @@ use App\Models\PropertyType;
 use App\Models\TenureType;
 use App\Models\User;
 use App\Models\Property;
+use App\Models\Land;
 use Barryvdh\DomPDF\Facade as PDF;
 use Gate;
 use Illuminate\Http\Request;
@@ -104,7 +105,7 @@ class EarthController extends Controller
     {
         $earth = Earth::find($id);
 
-        return view('admin.earths.reviewAll', compact('earth'))->with('property', Property::where('earth_id', $earth->id)->get());
+        return view('admin.earths.reviewAll', compact('earth'))->with('property', Property::where('earth_id', $earth->id)->get())->with('land', Land::where('earth_id', $earth->id)->get());
     }
 
     public function reject(Earth $earth)
@@ -138,7 +139,7 @@ class EarthController extends Controller
     public function reports(Earth $earth)
     {
         //$earth = Earth::orderBy('id', 'DESC')->get();
-        return view('admin.earths.reports', compact('earth'))->with('earth', Earth::where('status', '!=' ,0)->get())->with('users', User::all());
+        return view('admin.earths.reports', compact('earth'))->with('users', User::all())->with('earth', Earth::where('status', '!=' ,0)->orderBy('id', 'DESC')->get());
     }
 
     // apis For mobile application
