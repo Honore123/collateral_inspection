@@ -130,8 +130,33 @@ class HomeController
                 ->{$settings4['aggregate_function'] ?? 'count'}($settings4['aggregate_field'] ?? '*');
         }
 
+        $settings5 = [
+            'chart_title'           => 'All Inspection',
+            'chart_type'            => 'number_block',
+            'report_type'           => 'group_by_date',
+            'model'                 => 'App\Models\Earth',
+            'group_by_field'        => 'created_at',
+            'group_by_period'       => 'day',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd-m-Y H:i:s',
+            'column_class'          => 'col-md-3',
+            'entries_number'        => '5',
+            'translation_key'       => 'assetStatus',
+        ];
+
+        $settings5['total_number'] = 0;
+
+        if (class_exists($settings5['model'])) {
+            $settings5['total_number'] = $settings5['model']::when(isset($settings5['filter_field']), function ($query) use ($settings5) {
+                return $query->where(
+                    $settings5['filter_field'], '!=', null);
+            })
+                ->{$settings5['aggregate_function'] ?? 'count'}($settings5['aggregate_field'] ?? '*');
+        }
+
         $earths = Earth::where('status', '!=', 0)->orderBy('id', 'DESC')->limit(4)->get();
 
-        return view('home', compact('settings1', 'settings2', 'settings3', 'settings4', 'earths'))->with('users', User::all());
+        return view('home', compact('settings1', 'settings2', 'settings3', 'settings4', 'settings5', 'earths'))->with('users', User::all());
     }
 }
