@@ -49,8 +49,8 @@ class AuditLogsController extends Controller
             $table->editColumn('subject_type', function ($row) {
                 return $row->subject_type ? $row->subject_type : "";
             });
-            $table->editColumn('user_id', function ($row) {
-                return $row->user_id ? $row->user_id : "";
+            $table->editColumn('users_id', function ($row) {
+                return $row->users_id ? $row->users_id : "";
             });
             $table->editColumn('host', function ($row) {
                 return $row->host ? $row->host : "";

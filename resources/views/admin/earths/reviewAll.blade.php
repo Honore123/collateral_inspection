@@ -315,7 +315,7 @@
 
 
                 <!-- /. B1 -->
-
+                @can('admin')
                 <div class="row ">
                     <div class="col-md-12">
                         <div class="form-group form-inline border-top">
@@ -379,9 +379,9 @@
                     </div>
                     <!-- /.col -->
                 </div>
-
+                @endcan
                 <div class="row p-3 justify-content-center" style="">
-
+                @can('admin')
                     @if($earth->status != 2)
                         <a class="btn btn-danger btn-sm  mr-2" href="{{ route('admin.earths.reject', $earth->id) }}" >
                             Reject
@@ -393,6 +393,7 @@
                             Modify
                         </a>
                     @endif
+                @endcan
                 </div>
 
                 <!-- this row will not appear when printing -->
