@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\EarthController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\LandController;
 
 //Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -19,6 +20,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
 });
+
+// Vacant Land API
+Route::post('/vacant_land/{earth}', [LandController::class, 'storeApi']);
+
 //preset data of app property dropdowns api
 Route::get('/buildingType',[PropertyController::class,'buildingType']);
 Route::get('/foundations',[PropertyController::class, 'foundation']);
