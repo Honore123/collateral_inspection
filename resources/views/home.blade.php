@@ -56,6 +56,7 @@
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
+            @can('admin')
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
@@ -68,6 +69,7 @@
                 </div>
                 <!-- /.info-box -->
             </div>
+            @endcan
             <!-- /.col -->
         </div>
         <!-- /.row -->

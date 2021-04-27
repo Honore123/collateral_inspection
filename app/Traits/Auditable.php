@@ -28,7 +28,7 @@ trait Auditable
             'description'  => $description,
             'subject_id'   => $model->id ?? null,
             'subject_type' => get_class($model) ?? null,
-            'user_id'      => auth()->id() ?? null,
+            'users_id'      => auth()->id() ?? null,
             'properties'   => $model ?? null,
             'host'         => request()->ip() ?? null,
         ]);

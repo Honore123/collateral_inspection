@@ -44,35 +44,20 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        
-                        <span class="badge badge-warning navbar-badge"><strong>1</strong></span>
-                        
+                        <span class="badge badge-warning navbar-badge"><strong style="color: yellow">i</strong></span>
 
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-item dropdown-header">Notifications</span>
                         
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item notify">
+                        <a href="{{ route("admin.audit-logs.index") }}" class="dropdown-item notify">
                             <i class="fas fa-envelope mr-2"></i>
-                              <strong>2 new message </strong>
-                            
-                                <span class="float-right text-muted text-sm">( Empty )</span>
-                            
-                                <span class="float-right text-muted text-sm">now</span>
-                            
-                        </a>
-                        
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item notify">
-                            <i class="fas fa-file mr-2"></i>
-                            1 report
-                                <span class="float-right text-muted text-sm">( Check Inbox )</span>
-                            
-
+                              <strong> New message </strong>
+{{--                                <span class="float-right text-muted text-sm">now</span>--}}
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer notify">See All Notifications</a>
+                        <a href="{{ route('admin.home') }}" class="dropdown-item dropdown-footer notify">See All Notifications</a>
                     </div>
                 </li>
 
@@ -81,11 +66,11 @@
                         <i class="fas fa-cog"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('profile.password.edit') }}">
                             <i class="fal fa-user-circle fa-fw"></i>  Profile
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('profile.password.edit') }}">
                             <i class="fal fa-key fa-fw"></i>  Password
                         </a>
                         <div class="dropdown-divider"></div>

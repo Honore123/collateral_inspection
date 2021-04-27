@@ -34,9 +34,6 @@
                     <th>
                         Created at
                     </th>
-                    <th>
-                        &nbsp;
-                    </th>
                 </tr>
             </thead>
         </table>
@@ -65,10 +62,9 @@
 { data: 'description', name: 'description' },
 { data: 'subject_id', name: 'subject_id' },
 { data: 'subject_type', name: 'subject_type' },
-{ data: 'user_id', name: 'user_id' },
+{ data: 'users_id', name: 'users_id' },
 { data: 'host', name: 'host' },
-{ data: 'created_at', name: 'created_at' },
-{ data: 'actions', name: 'actions' }
+{ data: 'created_at', name: 'created_at' }
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
