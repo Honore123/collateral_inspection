@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::get('earths/reject/{earth}', 'EarthController@reject')->name('earths.reject');
 
-    Route::get('earths/modify/{earth}', 'EarthController@modify')->name('earths.modify');
+    Route::put('earths/modify/{earth}', 'EarthController@modify')->name('earths.modify');
 
     Route::get('earths/reports', 'EarthController@reports')->name('earths.reports');
 
