@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\MultiTenantModelTrait;
+use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
 
 class Earth extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,Auditable, MultiTenantModelTrait;
 
     public $table = 'earths';
 
