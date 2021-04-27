@@ -22,7 +22,7 @@ class ChangePasswordController extends Controller
     {
         auth()->user()->update($request->validated());
 
-        return redirect()->route('profile.password.edit')->with('message', __('global.change_password_success'));
+        return redirect()->route('profile.password.edit')->with('msg', __('global.change_password_success'));
     }
 
     public function updateProfile(UpdateProfileRequest $request)
@@ -31,7 +31,7 @@ class ChangePasswordController extends Controller
 
         $user->update($request->validated());
 
-        return redirect()->route('profile.password.edit')->with('message', __('global.update_profile_success'));
+        return redirect()->route('profile.password.edit')->with('msg', __('global.update_profile_success'));
     }
 
     public function destroy()
@@ -44,6 +44,6 @@ class ChangePasswordController extends Controller
 
         $user->delete();
 
-        return redirect()->route('login')->with('message', __('global.delete_account_success'));
+        return redirect()->route('login')->with('msg', __('global.delete_account_success'));
     }
 }

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
 
 class Property extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,Auditable;
 
     public $table = 'properties';
     protected $casts = [
