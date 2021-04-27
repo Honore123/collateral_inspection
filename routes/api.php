@@ -2,6 +2,7 @@
 use App\Http\Controllers\Admin\EarthController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\UsersController;
 
 //Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -10,8 +11,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/inspections/{userId}', [EarthController::class, 'indexApi']);
     Route::post('/inspections',[EarthController::class, 'storeApi']);
     Route::put('/inspections/{earth}', [EarthController::class, 'updateStatusApi']);
+    Route::put('/inspections/modify/{earth}', [EarthController::class, 'updateApi']);
 
+    //User account
     Route::post('users/logout', [AuthController::class, 'logout']);
+    Route::put('users/change_account/{user}', [UsersController::class,'updateApi']);
 
 
 });
