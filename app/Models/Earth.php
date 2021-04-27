@@ -58,6 +58,11 @@ class Earth extends Model
         return $this->hasMany(Property::class);
     }
 
+    public function land()
+    {
+        return $this->hasMany(Land::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

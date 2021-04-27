@@ -162,8 +162,7 @@
         <tr>
             <td class="last-row"></td>
         </tr>
-        @empty
-    @endforelse
+
     <tr>
        <td class="key-align">Estimated Value:</td>
         <td colspan="3">{{number_format($earth->value,0,'.',',')}} RWF</td>
@@ -171,12 +170,17 @@
     <tr>
         <td class="location">Picture:</td>
         <td class="value float-left" colspan="5" >
-            <img src="{{ public_path('storage/'.$property->image1) }}" alt="property image" width="500">
-            <img src="{{ public_path('storage/'.$property->image2) }}" alt="property image" width="500">
-            <img src="{{ public_path('storage/'.$property->image3) }}" alt="property image" width="500">
-            <img src="{{ public_path('storage/'.$property->image4) }}" alt="property image" width="500">
+            <img src="{{ public_path('storage/'.$property->image1) }}" alt="property image" width="300">
+            <img src="{{ public_path('storage/'.$property->image2) }}" alt="property image" width="300">
+            <img src="{{ public_path('storage/'.$property->image3) }}" alt="property image" width="300">
+            <img src="{{ public_path('storage/'.$property->image4) }}" alt="property image" width="300">
         </td>
     </tr>
+    @empty
+        <tr>
+            <td colspan="2"> No properties to show </td>
+        </tr>
+    @endforelse
     <tr>
         <td class="key-align">Location Map:</td>
     </tr>

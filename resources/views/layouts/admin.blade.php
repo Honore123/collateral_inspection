@@ -44,7 +44,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge"><strong style="color: yellow">i</strong></span>
+                        <span class="badge badge-warning navbar-badge"><strong style="color: #ffff00">i</strong></span>
 
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
