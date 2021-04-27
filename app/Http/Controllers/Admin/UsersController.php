@@ -85,8 +85,8 @@ class UsersController extends Controller
         return response(null, Response::HTTP_NO_CONTENT);
     }
 
-    public function updateApi(UpdateUserRequest $request, User $user){
-        $user->update($request->all(['name', 'password']));
+    public function updateApi(Request $request, User $user){
+        $user->update($request->all('name','password'));
 
         return $user;
     }
