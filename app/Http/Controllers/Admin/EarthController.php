@@ -3,9 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ModifyEarthRequest;
 use App\Http\Requests\StoreEarthRequest;
 use App\Http\Requests\UpdateEarthRequest;
+use App\Models\BuildingType;
+use App\Models\Ceiling;
+use App\Models\Doorwindow;
 use App\Models\Earth;
+use App\Models\Elevation;
+use App\Models\Foundation;
+use App\Models\Pavement;
 use App\Models\PropertyType;
 use App\Models\TenureType;
 use App\Models\User;
@@ -24,8 +31,16 @@ class EarthController extends Controller
         abort_if(Gate::denies('earth_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $earths = Earth::where('status', '!=', 0)->orderBy('id', 'DESC')->get();
+        $bt = BuildingType::all()->pluck('building_type', 'id')->prepend('Please select');
+        $ce = Ceiling::all()->pluck('building_ceiling', 'id')->prepend('Please select');
+        $dw = Doorwindow::all()->pluck('building_doorwindow', 'id')->prepend('Please select');
+        $el = Elevation::all()->pluck('building_elevation', 'id')->prepend('Please select');
+        $fo = Foundation::all()->pluck('building_foundation', 'id')->prepend('Please select');
+        $pa = Pavement::all()->pluck('building_pavement', 'id')->prepend('Please select');
+        $pt = PropertyType::all()->pluck('property_type', 'id')->prepend('Please select');
+        $tt = TenureType::all()->pluck('tenure_type', 'id')->prepend('Please select');
 
-        return view('admin.earths.index', compact('earths'))->with('users', User::all());
+        return view('admin.earths.index', compact('earths', 'bt', 'ce', 'dw', 'el', 'fo', 'pa', 'pt', 'tt'))->with('users', User::all());
     }
 
     public function store(StoreEarthRequest $request)
@@ -117,12 +132,13 @@ class EarthController extends Controller
         return redirect()->route('admin.earths.reports')->with('msg', 'Inspection rejected');
     }
 
-    public function modify(Earth $earth)
+    public function modify(ModifyEarthRequest $request, Earth $earth)
     {
         $earth->update([
-            'status' => 4
-        ]);
+            'comment' => $request->comment,
+            'status' => 4,
 
+        ]);
         return redirect()->route('admin.earths.reports')->with('msg', 'Review sent successfully');
     }
 
@@ -153,7 +169,7 @@ class EarthController extends Controller
         return Earth::create($request->all('inspectionDate','propertyUPI','province','district','sector','cell','village','propertyOwner',
             'tenureType','propertyType','plotSize','encumbranes','mortgaged','servedBy','latitude','longitude','accuracy','status','users_id'));
     }
-    public function updateApi(Request$request, Earth $earth){
+    public function updateApi(Request $request, Earth $earth){
        $earth->update($request->all());
        return $earth;
     }

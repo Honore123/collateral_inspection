@@ -178,9 +178,9 @@
                 <div class="form-group col-md-6">
                 <label class="required col-sm-3 col-form-label col-form-label-sm" for="tenureType">Tenure</label>
                     <select class="form-control form-control-sm select2 {{ $errors->has('tenureType') ? 'is-invalid' : '' }}" name="tenureType" id="tenureType" style="width: 100%" required>
-                        <option></option>
-                        <option value="Free hold">Free hold</option>
-                        <option value="All">All</option>
+                        @foreach($tt as $id => $tti)
+                            <option value="{{ $tti }}">{{ $tti }}</option>
+                        @endforeach
                     </select>
                 @if($errors->has('tenureType'))
                     <span class="text-danger">{{ $errors->first('tenureType') }}</span>
@@ -190,9 +190,9 @@
                 <div class="form-group col-md-6">
                     <label class="col-sm-5 col-form-label col-form-label-sm" for="propertyType">Property type</label>
                     <select class="form-control form-control-xs select2" name="propertyType" id="propertyType" style="width: 100%">
-                        <option></option>
-                        <option value="Land">Land</option>
-                        <option value="Building">Building</option>
+                        @foreach($pt as $id => $pti)
+                            <option value="{{ $pti }}">{{ $pti }}</option>
+                        @endforeach
                     </select>
                     @if($errors->has('propertyType'))
                         <span class="text-danger">{{ $errors->first('propertyType') }}</span>
@@ -245,9 +245,9 @@
                 <div class="form-group col-md-6">
                 <label class="col-sm-5 col-form-label col-form-label-sm" for="building_type">Building type</label>
                 <select class="form-control form-control-xs select2" name="village" id="village" style="width: 100%">
-                    <option>Select</option>
-                    <option value="Amahoro">Amahoro</option>
-                    <option value="Gikondo">Gikondo</option>
+                    @foreach($bt as $id => $bti)
+                        <option value="{{ $bti }}">{{ $bti }}</option>
+                    @endforeach
                 </select>
                 @if($errors->has('building_type'))
                     <span class="text-danger">{{ $errors->first('building_type') }}</span>
@@ -258,7 +258,6 @@
                 <label class="required col-sm-3 col-form-label col-form-label-sm" for="status">Status</label>
                 <select class="form-control form-control-sm select2 {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" style="width: 100%" required>
                     <option>Status</option>
-                    <option value="2">Approved</option>
                     <option value="1">Pending</option>
                 </select>
                 @if($errors->has('status'))
@@ -328,7 +327,7 @@
                <button class="btn btn-sm btn-secondary float-left" data-dismiss="modal">Close</button>
             </div>
             <div class="form-group mt-3">
-                <button type="submit" id="btnSave" class="btn btn-sm btn-primary float-right">Save changes</button>
+                <button type="submit" id="btnSave" class="btn btn-sm btn-primary float-right">Save</button>
             </div>
         </form>
 

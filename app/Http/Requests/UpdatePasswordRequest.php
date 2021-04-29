@@ -29,7 +29,7 @@ class UpdatePasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . auth()->id()],
+            'email'    => ['string', 'email', 'max:255', 'unique:users,email,' . auth()->id()],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ];
     }
