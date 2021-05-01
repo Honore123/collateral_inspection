@@ -73,7 +73,7 @@
                                 <tr>
                                     <th class="float-right">Property type:</th>
                                     <td>
-                                        <label class="rep"> {{ old('propertyType', $earth->propertyUPI) }} </label>
+                                        <label class="rep"> {{ old('propertyType', $earth->propertyType) }} </label>
                                     </td>
                                 </tr>
                                 <tr>
