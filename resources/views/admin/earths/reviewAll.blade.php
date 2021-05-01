@@ -10,7 +10,7 @@
                         <i class="fas fa-thumbs-up"></i> &nbsp; Approved
                     </span>
                 @else
-                    <span class="badge badge-success mr-2">
+                    <span class="badge badge-warning mr-2">
                         <i class="fas fa-clock"></i> &nbsp; Pending
                     </span>
                 @endif
@@ -412,8 +412,17 @@
                                         <td>
                                             @if($earth->comment != null)
                                                 <i> {{ $earth->comment }} </i>
+                                                <input type="hidden" class="{{ $errors->has('comment') ? 'is-invalid' : '' }}" name="comment" id="comment" value="{{ old('comment', $earth->comment) }}">
                                             @else
+                                                @can('admin')
                                                 <textarea class="form-control form-control-sm" name="comment" id="comment" placeholder="Comment" style="margin: 0px;width: 410px;height: 110px;"></textarea>
+                                                    <br>
+                                                    @if($earth->status != 2)
+                                                        <button class="btn btn-outline-info btn-sm  mt-3" type="button" data-toggle="modal" data-target="#modifyModal">
+                                                            Click Here to ask to 'Modify'
+                                                        </button>
+                                                    @endif
+                                                @endcan
                                             @endif
                                         </td>
                                     </tr>
@@ -444,9 +453,6 @@
                         <button class="btn btn-primary btn-sm mr-2" type="submit">
                             Approve
                         </button>
-                        <a class="btn btn-info btn-sm  mr-2" href="{{ route('admin.earths.modify', $earth->id) }}" >
-                            Modify
-                        </a>
                     @endif
                 @endcan
                 </div>
@@ -470,6 +476,34 @@
     </div>
 
     </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="POST" action="{{ route("admin.earths.modify", [$earth->id]) }}" enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+                    <div class="modal-body">
+                            <div class="form-group">
+                                <label for="comment" class="col-form-label">Message:</label>
+                                <textarea name="comment" class="form-control" placeholder="Tell a user where to modify" id="comment"></textarea>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-primary btn-sm">Send</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 @section('styles')
     <link href="{{ asset('vendors/venobox/venobox.min.css')}}" type="text/css" rel="stylesheet" />
 @endsection
@@ -479,8 +513,8 @@
     <script>
         $(document).ready(function(){
             $('.venobox').venobox({
-                framewidth : '800px',                            // default: ''
-                frameheight: '600px',                            // default: ''
+                framewidth : '',                                // default: ''
+                frameheight: '',                                // default: ''
                 border     : '8px',                             // default: '0'
                 infinigall : true,                               // default: false
             });
