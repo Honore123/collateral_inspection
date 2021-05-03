@@ -91,7 +91,7 @@ class EarthController extends Controller
     public function update(UpdateEarthRequest $request, Earth $earth)
     {
         $earth->update([
-            'status' => $request->status,
+            'status' => 2,
             'value' => $request->value,
             'comment' => NULL,
             'map' => $request->map->store('maps'),

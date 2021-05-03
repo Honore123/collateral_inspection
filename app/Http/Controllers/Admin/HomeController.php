@@ -125,7 +125,7 @@ class HomeController
         if (class_exists($settings4['model'])) {
             $settings4['total_number'] = $settings4['model']::when(isset($settings4['filter_field']), function ($query) use ($settings4) {
                 return $query->where(
-                    $settings4['filter_field'], '=', 1);
+                    $settings4['filter_field'], '=', 3);
             })
                 ->{$settings4['aggregate_function'] ?? 'count'}($settings4['aggregate_field'] ?? '*');
         }

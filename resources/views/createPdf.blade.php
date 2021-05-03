@@ -29,17 +29,17 @@
         padding-bottom: 10px;
     }
     .btn {
-        display: inline-block;
+        /*display: inline-block;*/
         /*font-weight: 300;*/
         color: #000000;
         text-align: center;
         vertical-align: middle;
         background-color: rgba(147, 225, 238, 0.45);
         border: 1px solid transparent;
-        padding: .375rem .75rem;
-        /*font-size: 1rem;*/
-        line-height: 1.5;
-        border-radius: 25px;
+        padding: .4rem;
+        font-size: 1rem;
+        line-height: 1.3;
+        border-radius: 1rem;
     }
 </style>
 <h2 class="header-title">INSPECTION REPORT</h2>
@@ -80,7 +80,7 @@
             <td class="key-align">Property Type:</td>
             <td class="value">{{$earth->propertyType}}</td>
             <td class="location"> Property Served By:</td>
-            <td class="value">{{$earth->servedBy}}</td>
+            <td class="value">{{$earth->servedBy}} road</td>
         </tr>
         <tr>
             <td class="key-align">Encumbranes:</td>
@@ -185,21 +185,21 @@
                 <td class="location">Picture:</td>
             </tr>
             <tr>
-                <td class="value float-left" colspan="5" >
+                <td class="value float-left" style="float: left; width: 100%" colspan="5" >
                     @if ($property->image1 != NULL)
-                        <img src="{{ public_path('storage/'.$property->image1) }}" width="350">
+                        <img src="{{ public_path('storage/'.$property->image1) }}" width="320">
                     @else
                     @endif
                     @if ($property->image2 != NULL)
-                        <img src="{{ public_path('storage/'.$property->image2) }}" width="350">
+                        <img src="{{ public_path('storage/'.$property->image2) }}" width="320">
                     @else
                     @endif
                     @if ($property->image3 != NULL)
-                        <img src="{{ public_path('storage/'.$property->image3) }}" width="350">
+                        <img src="{{ public_path('storage/'.$property->image3) }}" width="320">
                     @else
                     @endif
                     @if ($property->image4 != NULL)
-                        <img src="{{ public_path('storage/'.$property->image4) }}" width="350">
+                        <img src="{{ public_path('storage/'.$property->image4) }}" width="320">
                     @else
                     @endif
                 </td>
@@ -269,6 +269,9 @@
             <td class="value">{{$earth->property->count()}}</td>
         </tr>
         @forelse($earth->land as $land)
+            <tr class="building-underline">
+                <td colspan="4" class="building-title">LAND {{$loop->iteration++}}</td>
+            </tr>
             <tr>
                 <td class="key-align">Land current Usage:</td>
                 <td class="value">{{$land->currentUsage}}</td>
@@ -281,15 +284,30 @@
 
             <tr>
                 <td class="key-align">Estimated Value:</td>
-                <td colspan="3">{{number_format($earth->value,0,'.',',')}} RWF</td>
+                <td colspan="3"><button class="btn">{{number_format($earth->value,0,'.',',')}} RWF</button></td>
             </tr>
             <tr>
-                <td class="location">Picture:</td>
-                <td class="value float-left" colspan="4" >
-                    <img src="{{ public_path('storage/'.$land->image1) }}" alt="property image" width="400">
-                    <img src="{{ public_path('storage/'.$land->image2) }}" alt="property image" width="400">
-                    <img src="{{ public_path('storage/'.$land->image3) }}" alt="property image" width="400">
-                    <img src="{{ public_path('storage/'.$land->image4) }}" alt="property image" width="400">
+                <td class="key-align">Picture</td>
+                <td class="value">:</td>
+            </tr>
+            <tr>
+                <td class="value float-left" style="float: left; width: 100%" colspan="5" >
+                    @if ($land->image1 != NULL)
+                        <img src="{{ public_path('storage/'.$land->image1) }}" width="320">
+                    @else
+                    @endif
+                    @if ($land->image2 != NULL)
+                        <img src="{{ public_path('storage/'.$land->image2) }}" width="320">
+                    @else
+                    @endif
+                    @if ($land->image3 != NULL)
+                        <img src="{{ public_path('storage/'.$land->image3) }}" width="320">
+                    @else
+                    @endif
+                    @if ($land->image4 != NULL)
+                        <img src="{{ public_path('storage/'.$land->image4) }}" width="320">
+                    @else
+                    @endif
                 </td>
             </tr>
         @empty
