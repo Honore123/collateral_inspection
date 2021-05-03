@@ -257,7 +257,6 @@
                 <div class="form-group col-md-6">
                 <label class="required col-sm-3 col-form-label col-form-label-sm" for="status">Status</label>
                 <select class="form-control form-control-sm select2 {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" style="width: 100%" required>
-                    <option>Status</option>
                     <option value="1">Pending</option>
                 </select>
                 @if($errors->has('status'))

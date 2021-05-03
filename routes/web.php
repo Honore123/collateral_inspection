@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::put('earths/reviewAll/{id}', 'EarthController@update')->name('earths.update');
 
-    Route::get('earths/reject/{earth}', 'EarthController@reject')->name('earths.reject');
+    Route::put('earths/reject/{earth}', 'EarthController@reject')->name('earths.reject');
 
     Route::put('earths/modify/{earth}', 'EarthController@modify')->name('earths.modify');
 

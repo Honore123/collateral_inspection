@@ -25,11 +25,21 @@
         font-weight: bold;
         border-top: 1px solid black;
     }
-    .image-margin{
-        margin-top: 50px;
-    }
     .last-row{
         padding-bottom: 10px;
+    }
+    .btn {
+        display: inline-block;
+        /*font-weight: 300;*/
+        color: #000000;
+        text-align: center;
+        vertical-align: middle;
+        background-color: rgba(147, 225, 238, 0.45);
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        /*font-size: 1rem;*/
+        line-height: 1.5;
+        border-radius: 25px;
     }
 </style>
 <h2 class="header-title">INSPECTION REPORT</h2>
@@ -74,15 +84,19 @@
         </tr>
         <tr>
             <td class="key-align">Encumbranes:</td>
-            <td class="value">{{$earth->encumbranes}}</td>
+            <td class="value">{{$earth->encumbranes?'Yes':'No'}}</td>
         </tr>
         <tr>
             <td class="key-align">Mortgaged:</td>
-            <td class="value">{{$earth->mortgaged}}</td>
+            <td class="value">{{$earth->mortgaged?'Yes':'No'}}</td>
         </tr>
         <tr>
             <td class="key-align">Number of Buildings:</td>
             <td class="value">{{$earth->property->count()}}</td>
+        </tr>
+        <tr>
+            <td class="key-align">Estimated Value:</td>
+            <td colspan="3"><button class="btn">{{number_format($earth->value,0,'.',',')}} RWF</button></td>
         </tr>
         @forelse($earth->property as $property)
             <tr class="building-underline">
@@ -168,29 +182,25 @@
             </tr>
 
             <tr>
-                <td class="key-align">Estimated Value:</td>
-                <td colspan="3">{{number_format($earth->value,0,'.',',')}} RWF</td>
-            </tr>
-            <tr class="image-margin">
                 <td class="location">Picture:</td>
             </tr>
             <tr>
-                <td class="value float-left" colspan="2" >
-                    @if($property->image1)
-                    <img src="{{ public_path('storage/'.$property->image1) }}" alt="property image" width="300">
+                <td class="value float-left" colspan="5" >
+                    @if ($property->image1 != NULL)
+                        <img src="{{ public_path('storage/'.$property->image1) }}" width="350">
+                    @else
                     @endif
-                    @if($property->image2)
-                    <img src="{{ public_path('storage/'.$property->image2) }}" alt="property image" width="300">
+                    @if ($property->image2 != NULL)
+                        <img src="{{ public_path('storage/'.$property->image2) }}" width="350">
+                    @else
                     @endif
-                </td>
-            </tr>
-            <tr>
-                <td class="value float-left" colspan="2" >
-                    @if($property->image3)
-                        <img src="{{ public_path('storage/'.$property->image3) }}" alt="property image" width="300">
+                    @if ($property->image3 != NULL)
+                        <img src="{{ public_path('storage/'.$property->image3) }}" width="350">
+                    @else
                     @endif
-                    @if($property->image4)
-                        <img src="{{ public_path('storage/'.$property->image4) }}" alt="property image" width="300">
+                    @if ($property->image4 != NULL)
+                        <img src="{{ public_path('storage/'.$property->image4) }}" width="350">
+                    @else
                     @endif
                 </td>
             </tr>
@@ -244,15 +254,15 @@
             <td class="key-align">Property Type:</td>
             <td class="value">{{$earth->propertyType}}</td>
             <td class="location"> Property Served By:</td>
-            <td class="value">{{$earth->servedBy}}</td>
+            <td class="value">{{$earth->servedBy}} road</td>
         </tr>
         <tr>
             <td class="key-align">Encumbranes:</td>
-            <td class="value">{{$earth->encumbranes}}</td>
+            <td class="value">{{$earth->encumbranes?'Yes':'No'}}</td>
         </tr>
         <tr>
             <td class="key-align">Mortgaged:</td>
-            <td class="value">{{$earth->mortgaged}}</td>
+            <td class="value">{{$earth->mortgaged?'Yes':'No'}}</td>
         </tr>
         <tr>
             <td class="key-align">Number of Buildings:</td>
@@ -275,23 +285,11 @@
             </tr>
             <tr>
                 <td class="location">Picture:</td>
-            </tr>
-            <tr>
-                <td class="value float-left" colspan="2" >
-                    @if($land->image1)
+                <td class="value float-left" colspan="4" >
                     <img src="{{ public_path('storage/'.$land->image1) }}" alt="property image" width="400">
-                    @endif
-                    @if($land->image2)
                     <img src="{{ public_path('storage/'.$land->image2) }}" alt="property image" width="400">
-                    @endif
-                </td>
-                <td class="value float-left" colspan="2" >
-                    @if($land->image3)
                     <img src="{{ public_path('storage/'.$land->image3) }}" alt="property image" width="400">
-                    @endif
-                    @if($land->image4)
                     <img src="{{ public_path('storage/'.$land->image4) }}" alt="property image" width="400">
-                    @endif
                 </td>
             </tr>
         @empty

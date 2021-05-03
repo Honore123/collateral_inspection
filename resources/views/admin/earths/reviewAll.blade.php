@@ -40,126 +40,116 @@
                         <div class="table-responsive">
 
                             <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <th class="float-right">Inspection date:</th>
-                                        <td>
-                                             {{  $earth->inspectionDate }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Property UPI:</th>
-                                        <td>
-                                             {{ $earth->propertyUPI }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Owner:</th>
-                                        <td>
-                                             {{ $earth->propertyOwner}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Plot size:</th>
-                                        <td>
-                                            {{  $earth->plotSize }} <label style="font-size: 1.2em; margin: 0">&#13217</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Tenure type:</th>
-                                        <td>
-                                             {{  $earth->tenureType }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Property type:</th>
-                                        <td>
-                                             {{  $earth->propertyType }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Encumbrance:</th>
-                                        <td>
-                                             {{  $earth->encumbranes }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Mortgaged:</th>
-                                        <td>
-                                             {{  $earth->mortgaged }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Number of building:</th>
-                                        <td>
-                                             {{  $earth->property->count() }}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <tbody><tr>
+                                    <th class="float-right">Inspection date:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('inspectionDate', $earth->inspectionDate) }} </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Property UPI:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('propertyUPI', $earth->propertyUPI) }} </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Owner:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('propertyOwner', $earth->propertyOwner) }} </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Property size:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('plotSize', $earth->plotSize) }} </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Tenature type:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('tenureType', $earth->tenureType) }} </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Property type:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('propertyType', $earth->propertyType) }} </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Encumbrance:</th>
+                                    <td>
+                                        <label class="rep"> @if($earth->encumbranes == 1){{ old('encumbranes', $earth->encumbranes) ? 'Yes' : '' }} @else No @endif </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Mortgaged:</th>
+                                    <td>
+                                        <label class="rep"> @if($earth->mortgaged == 1){{ old('mortgaged', $earth->mortgaged) ? 'Yes' : '' }} @else No @endif </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Number of building:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('nb', $earth->property->count()) }} </label>
+                                    </td>
+                                </tr>
+                                </tbody></table>
                         </div>
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6 invoice-col">
                         <div class="table-responsive">
                             <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <th class="float-right">Province:</th>
-                                        <td>
-                                            {{  $earth->province }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">District:</th>
-                                        <td>
-                                           {{  $earth->district }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Sector:</th>
-                                        <td>
-                                             {{  $earth->sector }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Cell:</th>
-                                        <td>
-                                             {{  $earth->cell }}</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Village:</th>
-                                        <td>
-                                             {{  $earth->village }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Property served by:</th>
-                                        <td>
-                                            {{ $earth->servedBy }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Latitude:</th>
-                                        <td>
-                                             {{  $earth->latitude }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Longitude:</th>
-                                        <td>
-                                             {{  $earth->longitude }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="float-right">Accuracy:</th>
-                                        <td>
-                                           {{ number_format($earth->accuracy,0,'.',',').' meters' }}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <tbody><tr>
+                                    <th class="float-right">Province:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('province', $earth->province) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">District:</th>
+                                    <td>
+                                       <label class="rep"> {{ old('district', $earth->district) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Sector:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('sector', $earth->sector) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Cell:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('cell', $earth->cell) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Property served by:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('servedBy', $earth->servedBy) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Latitude:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('Latitude', $earth->latitude) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Longitude:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('Longitude', $earth->longitude) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="float-right">Accuracy:</th>
+                                    <td>
+                                        <label class="rep"> {{ old('Accuracy', number_format($earth->accuracy,0,'.',',').' meters') }}
+                                    </td>
+                                </tr>
+                                </tbody></table>
                         </div>
                     </div>
                     <!-- /.col -->
@@ -171,11 +161,10 @@
                         <div class="col-6">
                             <div class="table-responsive">
                                 <table class="table table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <td class="float-right"><b>0 Building</b></td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody><tr>
+                                        <td class="float-right"><b>0 Building</b></td>
+                                        <td></td>
+                                    </tr></tbody>
                                 </table>
                             </div>
                         </div>
@@ -183,22 +172,20 @@
                 @else
                     @foreach($property as $properties )
                         <div class="row">
-                            <div class="col-12">
-                                <div style="border-bottom: 2px solid black">
-                                    <h5 class="text-center">BUILDING {{ $loop->iteration++ }}</h5>
-                                </div>
-                            </div>
                         <div class="col-6">
                             <div class="table-responsive">
                                 <table class="table table-borderless">
-                                    <tbody>
+                                    <tbody><tr style="border-top: 2px solid black">
+                                        <td class="float-right"><b>BUILDING {{ $loop->iteration++ }}</b></td>
+                                        <td></td>
+                                    </tr>
                                     <tr>
                                         <th class="float-right">Building Type:</th>
                                         <td>{{ $properties->buildingType }}</td>
                                     </tr>
                                     <tr>
                                         <th class="float-right">Build up area:</th>
-                                        <td>{{ $properties->builtUpArea }} <label style="font-size: 1.2em; margin: 0">&#13217</label></td>
+                                        <td>{{ $properties->builtUpArea }}</td>
                                     </tr>
                                     <tr>
                                         <th class="float-right">ACC per building:</th>
@@ -235,7 +222,7 @@
                                     <tr>
                                         <th class="float-right">Internal finishing:</th>
                                         <td>
-                                            <ul style="padding-left:20px">
+                                            <ul>
                                                 @forelse($properties->internal as $key=>$value)
                                                     @if($value)
                                                         <li>{{$key}}</li>
@@ -249,7 +236,7 @@
                                     <tr>
                                         <th class="float-right">External finishing:</th>
                                         <td>
-                                            <ul style="padding-left:20px">
+                                            <ul>
                                                 @forelse($properties->external as $key=>$value)
                                                     @if($value)
                                                         <li>{{$key}}</li>
@@ -260,8 +247,7 @@
                                             </ul>
                                         </td>
                                     </tr>
-                                    </tbody>
-                                </table>
+                                    </tbody></table>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -273,19 +259,19 @@
                                         <td>.</td>
                                     </tr>
                                     <tr>
-                                        <th class="float-right">Fence length:</th>
-                                        <td>{{ $properties->fenceLength }} <label style="font-size: 1.2em;margin: 0">&#13217</label></td>
+                                        <th class="float-right">Fence lenght:</th>
+                                        <td>{{ $properties->fenceLength }}</td>
                                     </tr>
                                     <tr>
-                                        <th class="text-right" width="50%">Secured by gate:</th>
+                                        <th class="float-right">Secured by gate:</th>
                                         <td>
                                             {{ $properties->securedByGate?'Yes':'No' }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th class="text-right">Service attached:</th>
+                                        <th class="float-right">Service attached:</th>
                                         <td>
-                                            <ul style="padding-left:20px">
+                                            <ul>
                                                 @forelse($properties->serviceAttached as $key=>$value)
                                                     @if($value)
                                                    <li>{{$key}}</li>
@@ -299,40 +285,42 @@
                                     </tr>
                                     <tr>
                                         <th class="float-right">Picture:</th>
-                                        <td style="padding-left: 0; padding-right: 0;">
-                                                @if($properties->image1)
+                                        <td>
+                                            <div class="containerZoom float-left">
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image1) }}" data-gall="myGallery">
-                                                    <img src="{{ asset("storage/".$properties->image1) }}" class="p-sm-1" width="180" alt="Image 1">
-                                                </a>
-                                                @endif
-                                                @if($properties->image2)
-                                                <a class="venobox" href="{{ asset("storage/".$properties->image2) }}" data-gall="myGallery">
-                                                    <img src="{{ asset("storage/".$properties->image2) }}" class="p-sm-1" width="180" alt="Image 2">
-                                                </a>
-                                                @endif
-                                        </td>
-                                        <td style="padding-left: 0; padding-right: 0;">
-                                                @if($properties->image3)
-                                                <a class="venobox" href="{{ asset("storage/".$properties->image3) }}" data-gall="myGallery">
-                                                    <img src="{{ asset("storage/".$properties->image3) }}" class="p-sm-1" width="180" alt="Image 3">
-                                                </a>
-                                                @endif
-                                                @if($properties->image4)
-                                                <a class="venobox" href="{{ asset("storage/".$properties->image4) }}" data-gall="myGallery">
-                                                    <img src="{{ asset("storage/".$properties->image4) }}" class="p-sm-1" width="180" alt="Image 4">
-                                                </a>
-                                                @endif
-                                        </td>
+                                                    @if (File::exists(public_path("storage/".$properties->image1)) && $properties->image1 != NULL)
+                                                        <img src="{{ asset("storage/".$properties->image1) }}" class="p-sm-1" width="180" alt="Image 1">
+                                                    @else
 
-                                                @if(!$properties->image1 && !$properties->image2 &&!$properties->image3 &&!$properties->image4)
-                                                <span class="text text-md">No Images</span>
-                                                @endif
+                                                    @endif
+                                                </a>
+                                                <a class="venobox" href="{{ asset("storage/".$properties->image2) }}" data-gall="myGallery">
+                                                    @if (File::exists(public_path("storage/".$properties->image2)) && $properties->image2 != NULL)
+                                                        <img src="{{ asset("storage/".$properties->image2) }}" class="p-sm-1" width="180" alt="Image 2">
+                                                    @else
+
+                                                    @endif
+                                                </a>
+                                                <a class="venobox" href="{{ asset("storage/".$properties->image3) }}" data-gall="myGallery">
+                                                    @if (File::exists(public_path("storage/".$properties->image3)) && $properties->image3 != NULL)
+                                                        <img src="{{ asset("storage/".$properties->image3) }}" class="p-sm-1" width="180" alt="Image 3">
+                                                    @else
+
+                                                    @endif
+                                                </a>
+                                                <a class="venobox" href="{{ asset("storage/".$properties->image4) }}" data-gall="myGallery">
+                                                    @if (File::exists(public_path("storage/".$properties->image4)) && $properties->image4 != NULL)
+                                                        <img src="{{ asset("storage/".$properties->image4) }}" class="p-sm-1" width="180" alt="Image 4">
+                                                    @else
+
+                                                    @endif
+                                                </a>
+                                                <br>
+                                                <span class="text text-sm">Click to zoom</span>
+                                            </div>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="3" class="text-center"><span class="text text-sm">Click to zoom</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                    </tbody></table>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -342,25 +330,22 @@
             @else
                     @foreach($land as $lands )
                         <div class="row">
-                            <div class="col-12">
-                                <div style="border-bottom: 2px solid black">
-                                    <h5 class="text-center">LAND INFORMATION</h5>
-                                </div>
-                            </div>
                             <div class="col-6">
                                 <div class="table-responsive">
                                     <table class="table table-borderless">
-                                        <tbody>
-                                            <tr>
-                                                <th class="float-right">Current Usage:</th>
-                                                <td>{{ $lands->currentUsage }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="float-right">Plot Size:</th>
-                                                <td>{{ $earth->plotSize }} Sqm</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                        <tbody><tr style="border-top: 2px solid black">
+                                            <td class="float-right"><b>LAND {{ $loop->iteration++ }}</b></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="float-right">Current Usage:</th>
+                                            <td>{{ $lands->currentUsage }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="float-right">Plot Size:</th>
+                                            <td>{{ $earth->plotSize }} Sqm</td>
+                                        </tr>
+                                        </tbody></table>
                                 </div>
                             </div>
                             <!-- /.col -->
@@ -373,40 +358,42 @@
                                         </tr>
                                         <tr>
                                             <th class="float-right">Picture:</th>
-                                            <td style="padding-left: 0; padding-right: 0;">
-                                                    @if($lands->image1)
+                                            <td>
+                                                <div class="containerZoom float-left">
                                                     <a class="venobox" href="{{ asset("storage/".$lands->image1) }}" data-gall="myGallery">
-                                                        <img src="{{ asset("storage/".$lands->image1) }}" class="p-sm-1" width="180" alt="Image 1">
-                                                    </a>
-                                                    @endif
-                                                    @if($lands->image2)
-                                                    <a class="venobox" href="{{ asset("storage/".$lands->image2) }}" data-gall="myGallery">
-                                                        <img src="{{ asset("storage/".$lands->image2) }}" class="p-sm-1" width="180" alt="Image 2">
-                                                    </a>
-                                                        @endif
-                                            </td>
-                                            <td style="padding-left: 0; padding-right: 0;">
-                                                        @if($lands->image3)
-                                                    <a class="venobox" href="{{ asset("storage/".$lands->image3) }}" data-gall="myGallery">
-                                                        <img src="{{ asset("storage/".$lands->image3) }}" class="p-sm-1" width="180" alt="Image 3">
-                                                    </a>
-                                                        @endif
-                                                        @if($lands->image4)
+                                                        @if (File::exists(public_path("storage/".$lands->image1)) && $lands->image1 != NULL)
+                                                            <img src="{{ asset("storage/".$lands->image1) }}" class="p-sm-1" width="180" alt="Image 1">
+                                                        @else
 
-                                                    <a class="venobox" href="{{ asset("storage/".$lands->image4) }}" data-gall="myGallery">
-                                                        <img src="{{ asset("storage/".$lands->image4) }}" class="p-sm-1" width="180" alt="Image 4">
-                                                    </a>
-                                                            @endif
-                                            </td>
-                                                        @if(!$lands->image1 && !$lands->image2 &&!$lands->image3 &&!$lands->image4)
-                                                            <span class="text text-md">No Images</span>
                                                         @endif
+                                                    </a>
+                                                    <a class="venobox" href="{{ asset("storage/".$lands->image2) }}" data-gall="myGallery">
+                                                        @if (File::exists(public_path("storage/".$lands->image2)) && $lands->image2 != NULL)
+                                                            <img src="{{ asset("storage/".$lands->image2) }}" class="p-sm-1" width="180" alt="Image 2">
+                                                        @else
+
+                                                        @endif
+                                                    </a>
+                                                    <a class="venobox" href="{{ asset("storage/".$lands->image3) }}" data-gall="myGallery">
+                                                        @if (File::exists(public_path("storage/".$lands->image3)) && $lands->image3 != NULL)
+                                                            <img src="{{ asset("storage/".$lands->image3) }}" class="p-sm-1" width="180" alt="Image 3">
+                                                        @else
+
+                                                        @endif
+                                                    </a>
+                                                    <a class="venobox" href="{{ asset("storage/".$lands->image4) }}" data-gall="myGallery">
+                                                        @if (File::exists(public_path("storage/".$lands->image4)) && $lands->image4 != NULL)
+                                                            <img src="{{ asset("storage/".$lands->image4) }}" class="p-sm-1" width="180" alt="Image 4">
+                                                        @else
+
+                                                        @endif
+                                                    </a>
+                                                    <br>
+                                                    <span class="text text-sm">Click to zoom</span>
+                                                </div>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td colspan="3" class="text-center"><span class="text text-sm">Click to zoom</span></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                        </tbody></table>
                                 </div>
                             </div>
                             <!-- /.col -->
@@ -423,13 +410,13 @@
                                 <tbody>
                                     <tr>
                                     <td class="float-right">
-                                        <label class="required" for="value">Estimated value (Total): </label>
+                                        <label class="required">Estimated value (Total): </label>
                                     </td>
                                     <td>
                                         @if($earth->value != null)
                                              {{number_format($earth->value,0,'.',',')}} RWF
                                         @else
-                                            <input class="form-control form-control-sm {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" id="value" value="{{ old('value', $earth->value) }}" placeholder="Amount" type="number" required>
+                                            <input class="form-control form-control-sm {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" id="value" value="{{ old('value', $earth->value) }}" placeholder="Cash" required>
                                         @endif
                                     </td>
                                     </tr>
@@ -452,20 +439,23 @@
                                     </tr>
                                     <tr>
                                         <td class="float-right">
+                                        @if($earth->comment != null)
                                             <label class="required">Comment: </label>
                                         </td>
                                         <td>
-                                            @if($earth->comment != null)
+
                                                 <i> {{ $earth->comment }} </i>
                                                 <input type="hidden" class="{{ $errors->has('comment') ? 'is-invalid' : '' }}" name="comment" id="comment" value="{{ old('comment', $earth->comment) }}">
                                             @else
                                                 @can('admin')
-                                                <textarea class="form-control form-control-sm" name="comment" id="comment" placeholder="Comment" style="margin: 0px;width: 410px;height: 110px;"></textarea>
-                                                    <br>
+{{--                                                <textarea class="form-control form-control-sm" name="comment" id="comment" placeholder="Comment" style="margin: 0px;width: 410px;height: 110px;"></textarea>--}}
+{{--                                                    <br>--}}
                                                     @if($earth->status != 2)
+                                                        <td>
                                                         <button class="btn btn-outline-info btn-sm  mt-3" type="button" data-toggle="modal" data-target="#modifyModal">
                                                             Click Here to ask to 'Modify'
                                                         </button>
+                                                        </td>
                                                     @endif
                                                 @endcan
                                             @endif
@@ -492,9 +482,9 @@
                 <div class="row p-3 justify-content-center" style="">
                 @can('admin')
                     @if($earth->status != 2)
-                        <a class="btn btn-danger btn-sm  mr-2" href="{{ route('admin.earths.reject', $earth->id) }}" >
+                        <button class="btn btn-danger btn-sm  mr-2" type="button" data-toggle="modal" data-target="#rejectModal" >
                             Reject
-                        </a>
+                        </button>
                         <button class="btn btn-primary btn-sm mr-2" type="submit">
                             Approve
                         </button>
@@ -522,7 +512,7 @@
 
     </form>
 
-        <!-- Modal -->
+        <!-- Modal modify -->
         <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -548,7 +538,35 @@
                 </div>
             </div>
         </div>
-@endsection
+
+        <!-- Modal reject -->
+        <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Reject an Inspection</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="POST" action="{{ route("admin.earths.reject", [$earth->id]) }}" enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="comment" class="col-form-label">Message:</label>
+                                <textarea name="comment" class="form-control" placeholder="Tell a user why rejected" id="comment"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Reject</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 @section('styles')
     <link href="{{ asset('vendors/venobox/venobox.min.css')}}" type="text/css" rel="stylesheet" />
 @endsection
@@ -565,4 +583,6 @@
             });
         });
     </script>
+@endsection
+
 @endsection
