@@ -31,13 +31,13 @@ class EarthController extends Controller
         abort_if(Gate::denies('earth_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $earths = Earth::where('status', '!=', 0)->orderBy('id', 'DESC')->get();
-        $bt = BuildingType::all()->pluck('building_type', 'id')->prepend('Please select');
-        $ce = Ceiling::all()->pluck('building_ceiling', 'id')->prepend('Please select');
-        $dw = Doorwindow::all()->pluck('building_doorwindow', 'id')->prepend('Please select');
-        $el = Elevation::all()->pluck('building_elevation', 'id')->prepend('Please select');
-        $fo = Foundation::all()->pluck('building_foundation', 'id')->prepend('Please select');
-        $pa = Pavement::all()->pluck('building_pavement', 'id')->prepend('Please select');
-        $pt = PropertyType::all()->pluck('property_type', 'id')->prepend('Please select');
+        $bt = BuildingType::all()->pluck('name', 'id')->prepend('Please select');
+        $ce = Ceiling::all()->pluck('ceiling_name', 'id')->prepend('Please select');
+        $dw = Doorwindow::all()->pluck('doorwindow', 'id')->prepend('Please select');
+        $el = Elevation::all()->pluck('elevation_name', 'id')->prepend('Please select');
+        $fo = Foundation::all()->pluck('foundation_name', 'id')->prepend('Please select');
+        $pa = Pavement::all()->pluck('pavement_name', 'id')->prepend('Please select');
+        $pt = PropertyType::all()->pluck('name', 'id')->prepend('Please select');
         $tt = TenureType::all()->pluck('tenure_type', 'id')->prepend('Please select');
 
         return view('admin.earths.index', compact('earths', 'bt', 'ce', 'dw', 'el', 'fo', 'pa', 'pt', 'tt'))->with('users', User::all());
