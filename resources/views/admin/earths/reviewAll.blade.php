@@ -171,11 +171,11 @@
                     </div>
                 @else
                     @foreach($property as $properties )
-                        <div class="row">
+                        <div class="row border-top">
                         <div class="col-6">
                             <div class="table-responsive">
                                 <table class="table table-borderless">
-                                    <tbody><tr style="border-top: 2px solid black">
+                                    <tbody><tr style="border-top: 1px solid #dee2e6">
                                         <td class="float-right"><b>BUILDING {{ $loop->iteration++ }}</b></td>
                                         <td></td>
                                     </tr>
@@ -255,8 +255,9 @@
                             <div class="table-responsive">
                                 <table class="table table-borderless">
                                     <tbody>
-                                    <tr>
+                                    <tr style="border-top: 1px solid #dee2e6">
                                         <td>.</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <th class="float-right">Fence lenght:</th>
@@ -329,11 +330,11 @@
                 @endif
             @else
                     @foreach($land as $lands )
-                        <div class="row">
+                        <div class="row border-top">
                             <div class="col-6">
                                 <div class="table-responsive">
                                     <table class="table table-borderless">
-                                        <tbody><tr style="border-top: 2px solid black">
+                                        <tbody><tr style="border-top: 1px solid #dee2e6">
                                             <td class="float-right"><b>LAND {{ $loop->iteration++ }}</b></td>
                                             <td></td>
                                         </tr>
@@ -353,8 +354,9 @@
                                 <div class="table-responsive">
                                     <table class="table table-borderless">
                                         <tbody>
-                                        <tr>
+                                        <tr style="border-top: 1px solid #dee2e6">
                                             <td>.</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <th class="float-right">Picture:</th>
@@ -403,63 +405,47 @@
 
                 <!-- /. B1 -->
                 @can('admin')
-                <div class="row ">
-                    <div class="col-md-12">
-                        <div class="form-group form-inline border-top">
+                <div class="row border-top">
+                    <div class="col col-8 mr-auto">
+                        <div class="form-group form-inline">
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
+                                    @if($earth->value != null)
                                     <td class="float-right">
                                         <label class="required">Estimated value (Total): </label>
                                     </td>
                                     <td>
-                                        @if($earth->value != null)
-                                             {{number_format($earth->value,0,'.',',')}} RWF
-                                        @else
-                                            <input class="form-control form-control-sm {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" id="value" value="{{ old('value', $earth->value) }}" placeholder="Cash" required>
-                                        @endif
+                                         {{number_format($earth->value,0,'.',',')}} RWF
                                     </td>
+                                        @else
+                                        @endif
                                     </tr>
                                     <tr>
+                                        @if($earth->map != NULL)
                                         <td class="float-right">
                                             <label class="required">Map: </label>
                                         </td>
-                                        @if($earth->map == NULL)
-                                        <td>
-                                            <input type="file" class="form-control form-control-sm {{ $errors->has('map') ? 'is-invalid' : '' }}" name="map" id="map" required>
-                                        </td>
-                                        @else
                                         <td>
                                             <a class="venobox" href="{{ asset("storage/".$earth->map) }}">
                                                 <img src="{{ asset("storage/".$earth->map) }}" id="imageZoom" width="250" alt="">
                                             </a> <br>
                                             <span class="text text-sm">Click to zoom</span>
                                         </td>
+                                        @else
                                         @endif
                                     </tr>
                                     <tr>
-                                        <td class="float-right">
                                         @if($earth->comment != null)
+                                        <td class="float-right">
                                             <label class="required">Comment: </label>
                                         </td>
                                         <td>
-
-                                                <i> {{ $earth->comment }} </i>
+                                            <i> {{ $earth->comment }} </i>
                                                 <input type="hidden" class="{{ $errors->has('comment') ? 'is-invalid' : '' }}" name="comment" id="comment" value="{{ old('comment', $earth->comment) }}">
-                                            @else
-                                                @can('admin')
-{{--                                                <textarea class="form-control form-control-sm" name="comment" id="comment" placeholder="Comment" style="margin: 0px;width: 410px;height: 110px;"></textarea>--}}
-{{--                                                    <br>--}}
-                                                    @if($earth->status != 2)
-                                                        <td>
-                                                        <button class="btn btn-outline-info btn-sm  mt-3" type="button" data-toggle="modal" data-target="#modifyModal">
-                                                            Click Here to ask to 'Modify'
-                                                        </button>
-                                                        </td>
-                                                    @endif
-                                                @endcan
-                                            @endif
                                         </td>
+                                        @else
+                                        @endif
                                     </tr>
                                     <tr>
                                         <td class="float-right">
@@ -473,19 +459,75 @@
                         </div>
                     </div>
                     <!-- /.col -->
-                    <div class="col-6">
-                        <input type="hidden" id="status" class="{{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" value="2">
-                    </div>
-                    <!-- /.col -->
                 </div>
                 @endcan
+
+            <!-- Modal APPROVE -->
+
+                <div class="modal fade" id="approveModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <!-- CONTENT -->
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                        <tr>
+                                            <td class="float-right">
+                                                <label class="required">Estimated value (Total): </label>
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-control-sm" name="value" id="value" value="{{ old('value', $earth->value) }}" placeholder="Cash" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right">
+                                                <label class="required">Map: </label>
+                                            </td>
+                                            <td>
+                                                <input type="file" class="form-control form-control-sm" name="map" id="map" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="float-right">
+                                                <label class="required">Comment: </label>
+                                            </td>
+                                            <td>
+                                                <textarea class="form-control form-control-sm" name="comment" id="comment" placeholder="Comment" style="margin: 0px;height: 110px;"></textarea>
+                                                <br>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-outline-success btn-sm">Approve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- END Modal APPROVE -->
+
                 <div class="row p-3 justify-content-center" style="">
                 @can('admin')
                     @if($earth->status != 2)
                         <button class="btn btn-danger btn-sm  mr-2" type="button" data-toggle="modal" data-target="#rejectModal" >
                             Reject
                         </button>
-                        <button class="btn btn-primary btn-sm mr-2" type="submit">
+                        {{-- @if ($earth->comment == NULL) --}}
+                            <button class="btn btn-info btn-sm mr-2" type="button" data-toggle="modal" data-target="#modifyModal">
+                                Modify
+                            </button>
+                        {{-- @endif --}}
+                        <button class="btn btn-primary btn-sm mr-2" type="button" data-toggle="modal" data-target="#approveModal" >
                             Approve
                         </button>
                     @endif
@@ -495,8 +537,8 @@
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
                     <div class="col-12">
-                        <a href="{{ route('admin.earths.reports') }}" class="btn btn-default btn-sm float-left" style="margin: 5px;">
-                            Back
+                        <a href="{{ route('admin.earths.reports') }}" class="btn btn-secondary btn-sm float-left" style="margin: 5px;">
+                            <i class="fas fa-arrow-circle-left"></i> Back
                         </a>
                         @if($earth->reportFile != NULL)
                             <a href="{{ asset("storage/generatedPdf/".$earth->reportFile) }}" class="btn btn-primary btn-sm float-right" style="margin: 5px;" target="_blank" download >
