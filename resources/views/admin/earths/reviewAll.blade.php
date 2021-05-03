@@ -173,7 +173,7 @@
                     @foreach($property as $properties )
                         <div class="row border-top">
                         <div class="col-6">
-                            <div class="table-responsive">
+                            <div class="">
                                 <table class="table table-borderless">
                                     <tbody><tr style="border-top: 1px solid #dee2e6">
                                         <td class="float-right"><b>BUILDING {{ $loop->iteration++ }}</b></td>
