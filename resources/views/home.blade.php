@@ -107,9 +107,9 @@
                                 <tr style="font-size: smaller">
                                     <th>Inspection ID</th>
                                     <th>Inspection Date</th>
-                                    <th>Property type</th>
-{{--                                    <th>Inspected By</th>--}}
                                     <th>Property UPI</th>
+{{--                                    <th>Inspected By</th>--}}
+                                    <th>Property type</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -127,7 +127,7 @@
 {{--                                                @endif--}}
 {{--                                            @endforeach--}}
 {{--                                        </td>--}}
-                                        <td>{{ $earth->propertyType ?? '' }}</td>
+                                        <td>{!!  Str::limit($earth->propertyType, 11) !!}</td>
                                         <td>
                                             @if($earth->status == 1)
                                                 <span class="badge badge-warning">Pending</span>

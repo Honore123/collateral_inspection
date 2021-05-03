@@ -288,16 +288,32 @@
                                         <td>
                                             <div class="containerZoom float-left">
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image1) }}" data-gall="myGallery">
-                                                    <img src="{{ asset("storage/".$properties->image1) }}" class="p-sm-1" width="180" alt="Image 1">
+                                                    @if (File::exists(public_path("storage/".$properties->image1)) && $properties->image1 != NULL)
+                                                        <img src="{{ asset("storage/".$properties->image1) }}" class="p-sm-1" width="180" alt="Image 1">
+                                                    @else
+
+                                                    @endif
                                                 </a>
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image2) }}" data-gall="myGallery">
-                                                    <img src="{{ asset("storage/".$properties->image2) }}" class="p-sm-1" width="180" alt="Image 2">
+                                                    @if (File::exists(public_path("storage/".$properties->image2)) && $properties->image2 != NULL)
+                                                        <img src="{{ asset("storage/".$properties->image2) }}" class="p-sm-1" width="180" alt="Image 2">
+                                                    @else
+
+                                                    @endif
                                                 </a>
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image3) }}" data-gall="myGallery">
-                                                    <img src="{{ asset("storage/".$properties->image3) }}" class="p-sm-1" width="180" alt="Image 3">
+                                                    @if (File::exists(public_path("storage/".$properties->image3)) && $properties->image3 != NULL)
+                                                        <img src="{{ asset("storage/".$properties->image3) }}" class="p-sm-1" width="180" alt="Image 3">
+                                                    @else
+
+                                                    @endif
                                                 </a>
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image4) }}" data-gall="myGallery">
-                                                    <img src="{{ asset("storage/".$properties->image4) }}" class="p-sm-1" width="180" alt="Image 4">
+                                                    @if (File::exists(public_path("storage/".$properties->image4)) && $properties->image4 != NULL)
+                                                        <img src="{{ asset("storage/".$properties->image4) }}" class="p-sm-1" width="180" alt="Image 4">
+                                                    @else
+
+                                                    @endif
                                                 </a>
                                                 <br>
                                                 <span class="text text-sm">Click to zoom</span>
@@ -345,16 +361,32 @@
                                             <td>
                                                 <div class="containerZoom float-left">
                                                     <a class="venobox" href="{{ asset("storage/".$lands->image1) }}" data-gall="myGallery">
-                                                        <img src="{{ asset("storage/".$lands->image1) }}" class="p-sm-1" width="180" alt="Image 1">
+                                                        @if (File::exists(public_path("storage/".$lands->image1)) && $lands->image1 != NULL)
+                                                            <img src="{{ asset("storage/".$lands->image1) }}" class="p-sm-1" width="180" alt="Image 1">
+                                                        @else
+
+                                                        @endif
                                                     </a>
                                                     <a class="venobox" href="{{ asset("storage/".$lands->image2) }}" data-gall="myGallery">
-                                                        <img src="{{ asset("storage/".$lands->image2) }}" class="p-sm-1" width="180" alt="Image 2">
+                                                        @if (File::exists(public_path("storage/".$lands->image2)) && $lands->image2 != NULL)
+                                                            <img src="{{ asset("storage/".$lands->image2) }}" class="p-sm-1" width="180" alt="Image 2">
+                                                        @else
+
+                                                        @endif
                                                     </a>
                                                     <a class="venobox" href="{{ asset("storage/".$lands->image3) }}" data-gall="myGallery">
-                                                        <img src="{{ asset("storage/".$lands->image3) }}" class="p-sm-1" width="180" alt="Image 3">
+                                                        @if (File::exists(public_path("storage/".$lands->image3)) && $lands->image3 != NULL)
+                                                            <img src="{{ asset("storage/".$lands->image3) }}" class="p-sm-1" width="180" alt="Image 3">
+                                                        @else
+
+                                                        @endif
                                                     </a>
                                                     <a class="venobox" href="{{ asset("storage/".$lands->image4) }}" data-gall="myGallery">
-                                                        <img src="{{ asset("storage/".$lands->image4) }}" class="p-sm-1" width="180" alt="Image 4">
+                                                        @if (File::exists(public_path("storage/".$lands->image4)) && $lands->image4 != NULL)
+                                                            <img src="{{ asset("storage/".$lands->image4) }}" class="p-sm-1" width="180" alt="Image 4">
+                                                        @else
+
+                                                        @endif
                                                     </a>
                                                     <br>
                                                     <span class="text text-sm">Click to zoom</span>
@@ -407,20 +439,23 @@
                                     </tr>
                                     <tr>
                                         <td class="float-right">
+                                        @if($earth->comment != null)
                                             <label class="required">Comment: </label>
                                         </td>
                                         <td>
-                                            @if($earth->comment != null)
+
                                                 <i> {{ $earth->comment }} </i>
                                                 <input type="hidden" class="{{ $errors->has('comment') ? 'is-invalid' : '' }}" name="comment" id="comment" value="{{ old('comment', $earth->comment) }}">
                                             @else
                                                 @can('admin')
-                                                <textarea class="form-control form-control-sm" name="comment" id="comment" placeholder="Comment" style="margin: 0px;width: 410px;height: 110px;"></textarea>
-                                                    <br>
+{{--                                                <textarea class="form-control form-control-sm" name="comment" id="comment" placeholder="Comment" style="margin: 0px;width: 410px;height: 110px;"></textarea>--}}
+{{--                                                    <br>--}}
                                                     @if($earth->status != 2)
+                                                        <td>
                                                         <button class="btn btn-outline-info btn-sm  mt-3" type="button" data-toggle="modal" data-target="#modifyModal">
                                                             Click Here to ask to 'Modify'
                                                         </button>
+                                                        </td>
                                                     @endif
                                                 @endcan
                                             @endif
@@ -447,9 +482,9 @@
                 <div class="row p-3 justify-content-center" style="">
                 @can('admin')
                     @if($earth->status != 2)
-                        <a class="btn btn-danger btn-sm  mr-2" href="{{ route('admin.earths.reject', $earth->id) }}" >
+                        <button class="btn btn-danger btn-sm  mr-2" type="button" data-toggle="modal" data-target="#rejectModal" >
                             Reject
-                        </a>
+                        </button>
                         <button class="btn btn-primary btn-sm mr-2" type="submit">
                             Approve
                         </button>
@@ -477,7 +512,7 @@
 
     </form>
 
-        <!-- Modal -->
+        <!-- Modal modify -->
         <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -499,6 +534,34 @@
                         <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-outline-primary btn-sm">Send</button>
                     </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal reject -->
+        <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Reject an Inspection</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="POST" action="{{ route("admin.earths.reject", [$earth->id]) }}" enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="comment" class="col-form-label">Message:</label>
+                                <textarea name="comment" class="form-control" placeholder="Tell a user why rejected" id="comment"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Reject</button>
+                        </div>
                     </form>
                 </div>
             </div>
