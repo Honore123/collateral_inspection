@@ -93,7 +93,7 @@ class EarthController extends Controller
         $earth->update([
             'status' => $request->status,
             'value' => $request->value,
-            'comment' => $request->comment,
+            'comment' => NULL,
             'map' => $request->map->store('maps'),
         ]);
         //   Save pdf
@@ -123,9 +123,10 @@ class EarthController extends Controller
         return view('admin.earths.reviewAll', compact('earth'))->with('property', Property::where('earth_id', $earth->id)->get())->with('land', Land::where('earth_id', $earth->id)->get());
     }
 
-    public function reject(Earth $earth)
+    public function reject(Request $request, Earth $earth)
     {
         $earth->update([
+            'comment' => $request->comment,
             'status' => 3
         ]);
 

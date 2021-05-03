@@ -28,6 +28,19 @@
     .last-row{
         padding-bottom: 10px;
     }
+    .btn {
+        display: inline-block;
+        /*font-weight: 300;*/
+        color: #000000;
+        text-align: center;
+        vertical-align: middle;
+        background-color: rgba(147, 225, 238, 0.45);
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        /*font-size: 1rem;*/
+        line-height: 1.5;
+        border-radius: 25px;
+    }
 </style>
 <h2 class="header-title">INSPECTION REPORT</h2>
 <table>
@@ -80,6 +93,10 @@
         <tr>
             <td class="key-align">Number of Buildings:</td>
             <td class="value">{{$earth->property->count()}}</td>
+        </tr>
+        <tr>
+            <td class="key-align">Estimated Value:</td>
+            <td colspan="3"><button class="btn">{{number_format($earth->value,0,'.',',')}} RWF</button></td>
         </tr>
         @forelse($earth->property as $property)
             <tr class="building-underline">
@@ -165,16 +182,26 @@
             </tr>
 
             <tr>
-                <td class="key-align">Estimated Value:</td>
-                <td colspan="3">{{number_format($earth->value,0,'.',',')}} RWF</td>
+                <td class="location">Picture:</td>
             </tr>
             <tr>
-                <td class="location">Picture:</td>
                 <td class="value float-left" colspan="5" >
-                    <img src="{{ public_path('storage/'.$property->image1) }}" alt="property image" width="300">
-                    <img src="{{ public_path('storage/'.$property->image2) }}" alt="property image" width="300">
-                    <img src="{{ public_path('storage/'.$property->image3) }}" alt="property image" width="300">
-                    <img src="{{ public_path('storage/'.$property->image4) }}" alt="property image" width="300">
+                    @if ($property->image1 != NULL)
+                        <img src="{{ public_path('storage/'.$property->image1) }}" width="350">
+                    @else
+                    @endif
+                    @if ($property->image2 != NULL)
+                        <img src="{{ public_path('storage/'.$property->image2) }}" width="350">
+                    @else
+                    @endif
+                    @if ($property->image3 != NULL)
+                        <img src="{{ public_path('storage/'.$property->image3) }}" width="350">
+                    @else
+                    @endif
+                    @if ($property->image4 != NULL)
+                        <img src="{{ public_path('storage/'.$property->image4) }}" width="350">
+                    @else
+                    @endif
                 </td>
             </tr>
         @empty
@@ -227,7 +254,7 @@
             <td class="key-align">Property Type:</td>
             <td class="value">{{$earth->propertyType}}</td>
             <td class="location"> Property Served By:</td>
-            <td class="value">{{$earth->servedBy}}</td>
+            <td class="value">{{$earth->servedBy}} road</td>
         </tr>
         <tr>
             <td class="key-align">Encumbranes:</td>
