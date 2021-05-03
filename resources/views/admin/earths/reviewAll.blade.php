@@ -222,7 +222,7 @@
                                     <tr>
                                         <th class="float-right">Internal finishing:</th>
                                         <td>
-                                            <ul>
+                                            <ul style="padding-left: .7rem;">
                                                 @forelse($properties->internal as $key=>$value)
                                                     @if($value)
                                                         <li>{{$key}}</li>
@@ -236,7 +236,7 @@
                                     <tr>
                                         <th class="float-right">External finishing:</th>
                                         <td>
-                                            <ul>
+                                            <ul style="padding-left: .7rem;">
                                                 @forelse($properties->external as $key=>$value)
                                                     @if($value)
                                                         <li>{{$key}}</li>
@@ -252,7 +252,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-6">
-                            <div class="table-responsive">
+                            <div class="">
                                 <table class="table table-borderless">
                                     <tbody>
                                     <tr style="border-top: 1px solid #dee2e6">
@@ -260,19 +260,19 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <th class="float-right">Fence lenght:</th>
+                                        <th class="float-right" style="text-align: right;">Fence lenght:</th>
                                         <td>{{ $properties->fenceLength }}</td>
                                     </tr>
                                     <tr>
-                                        <th class="float-right">Secured by gate:</th>
+                                        <th class="float-right" style="text-align: right;">Secured by gate:</th>
                                         <td>
                                             {{ $properties->securedByGate?'Yes':'No' }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th class="float-right">Service attached:</th>
+                                        <th class="float-right" style="text-align: right;">Service attached:</th>
                                         <td>
-                                            <ul>
+                                            <ul style="padding-left: .7rem;">
                                                 @forelse($properties->serviceAttached as $key=>$value)
                                                     @if($value)
                                                    <li>{{$key}}</li>
@@ -286,37 +286,38 @@
                                     </tr>
                                     <tr>
                                         <th class="float-right">Picture:</th>
-                                        <td>
-                                            <div class="containerZoom float-left">
+                                        <td style="padding: .2rem;">
+                                            <div class="containerZoom">
+                                                <table style="border:none; display: flex;"><tr><td style="padding: .2rem;">
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image1) }}" data-gall="myGallery">
                                                     @if (File::exists(public_path("storage/".$properties->image1)) && $properties->image1 != NULL)
-                                                        <img src="{{ asset("storage/".$properties->image1) }}" class="p-sm-1" width="180" alt="Image 1">
+                                                        <img src="{{ asset("storage/".$properties->image1) }}" class="img-fluid" width="180" alt="Image 1">
                                                     @else
 
                                                     @endif
-                                                </a>
+                                                </a></td><td style="padding: .2rem;">
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image2) }}" data-gall="myGallery">
                                                     @if (File::exists(public_path("storage/".$properties->image2)) && $properties->image2 != NULL)
-                                                        <img src="{{ asset("storage/".$properties->image2) }}" class="p-sm-1" width="180" alt="Image 2">
+                                                        <img src="{{ asset("storage/".$properties->image2) }}" class="img-fluid" width="180" alt="Image 2">
                                                     @else
 
                                                     @endif
-                                                </a>
+                                                </a></td></tr><tr><td style="padding: .2rem;">
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image3) }}" data-gall="myGallery">
                                                     @if (File::exists(public_path("storage/".$properties->image3)) && $properties->image3 != NULL)
-                                                        <img src="{{ asset("storage/".$properties->image3) }}" class="p-sm-1" width="180" alt="Image 3">
+                                                        <img src="{{ asset("storage/".$properties->image3) }}" class="img-fluid" width="180" alt="Image 3">
                                                     @else
 
                                                     @endif
-                                                </a>
+                                                </a></td><td style="padding: .2rem;">
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image4) }}" data-gall="myGallery">
                                                     @if (File::exists(public_path("storage/".$properties->image4)) && $properties->image4 != NULL)
-                                                        <img src="{{ asset("storage/".$properties->image4) }}" class="p-sm-1" width="180" alt="Image 4">
+                                                        <img src="{{ asset("storage/".$properties->image4) }}" class="img-fluid" width="180" alt="Image 4">
                                                     @else
 
                                                     @endif
-                                                </a>
-                                                <br>
+                                                </a></td></tr>
+                                                </table>
                                                 <span class="text text-sm">Click to zoom</span>
                                             </div>
                                         </td>
