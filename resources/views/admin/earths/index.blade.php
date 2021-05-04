@@ -9,9 +9,6 @@
             <a class="btn btn-success btn-sm float-right mr-2" href="{{ route('admin.earths.index') }}" data-toggle="modal" data-target=".addEarthModal">
                 Add new
             </a>
-            <a class="btn btn-secondary btn-sm float-right mr-4" href="{{ route('admin.earths.index') }}" data-toggle="modal" data-target=".addEarthModal">
-                Filter
-            </a>
             <span class="help-block" id="message"></span>
             <div id="message"></div>
         </div>
@@ -49,7 +46,7 @@
                             Status
                         </th>
                         <th>
-                            More
+                            Action
                         </th>
                     </tr>
                 </thead>
@@ -89,29 +86,16 @@
                                     <span class="badge badge-info">Modify</span>
                                 @endif
                             </td>
-                            <td style="width: max-content;">
-                                <div class="dropdowns">
-                                    <button onclick="myFunctions()" class="dropbtns">
-                                        Action <i class="fas fa-caret-down"></i>
-                                    </button>
-                                    <div id="myDropdowns" class="dropdown-contents">
-                                            <a class="btn btn-sm btn-outline-primary" href="{{ route('admin.earths.show', $earth->id) }}">
-                                                <i class="fal fa-eye"></i> View
-                                            </a>
-                                            <a class="btn btn-sm btn-outline-info mt-1" href="{{ route('admin.earths.index', $earth->id) }}"
-                                               data-toggle="modal" data-target="changeStatusModal">
-                                                <i class="fal fa-edit"></i> Edit
-                                            </a>
-                                            <form action="{{ route('admin.earths.destroy', $earth->id) }}" method="POST" onsubmit="return confirm('Are you Sure');" style="display: inline-block; width: 100%">
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <button type="submit" class="btn btn-sm btn-outline-danger btn-block mt-1"><i class="fal fa-trash-alt"></i> Delete
-                                                </button>
-                                            </form>
-                                    </div>
-                                </div>
+                            <td>
+                                <a class="btn btn-xs btn-primary" href="{{ route('admin.earths.show', $earth->id) }}" title="View">
+                                    <i class="fal fa-eye"></i>
+                                </a>
+                                <form action="{{ route('admin.earths.destroy', $earth->id) }}" method="POST" onsubmit="return confirm('Are you Sure');" style="display: inline-block;">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-xs btn-danger" title="Delete"><i class="fal fa-trash-alt"></i>                                    </button>
+                                </form>
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>
@@ -346,25 +330,6 @@
 @endsection
 @section('scripts')
 @parent
-
-<script>
-    /* Action button JS*/
-    function myFunctions() {
-        document.getElementById("myDropdowns").classList.toggle("shows");
-    }
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtns')) {
-            var dropdowns = document.getElementsByClassName("dropdown-contents");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('shows')) {
-                    openDropdown.classList.remove('shows');
-                }
-            }
-        }
-    }
-</script>
 <script>
 
     jQuery('#addEarthForm').submit(function(e){

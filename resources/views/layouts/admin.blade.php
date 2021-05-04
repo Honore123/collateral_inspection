@@ -40,7 +40,7 @@
               <ul class="navbar-nav ml-auto">
                  
             <!-- Notifications Dropdown Menu -->
-                
+                {{--
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
@@ -53,17 +53,17 @@
                         <div class="dropdown-divider"></div>
                         <a href="{{ route("admin.audit-logs.index") }}" class="dropdown-item notify">
                             <i class="fas fa-envelope mr-2"></i>
-                              <strong> New message </strong>
+                              <strong> New message </strong>--}}
 {{--                                <span class="float-right text-muted text-sm">now</span>--}}
-                        </a>
+                        {{--</a>
                         <div class="dropdown-divider"></div>
                         <a href="{{ route('admin.home') }}" class="dropdown-item dropdown-footer notify">See All Notifications</a>
                     </div>
-                </li>
+                </li> --}}
 
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#" >
-                        <i class="fas fa-cog"></i>
+                        <div class="uprofile font-weight-bold"><img src="{{ asset('assets/img/user.svg') }}" class="img-circle" alt="User Image"> {{ Auth::user()->name }}</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="{{ route('profile.password.edit') }}">

@@ -5,10 +5,7 @@
             <h4 class="ml-2"> Inspection </h4>
         </div>
         <div class="col-6">
-            <a class="btn btn-success btn-sm float-right mr-2" href="{{ route('admin.earths.index') }}" data-toggle="modal" data-target=".addEarthModal">
-                Add new
-            </a>
-            <a class="btn btn-secondary btn-sm float-right mr-4" href="{{ route('admin.earths.index') }}" data-toggle="modal" data-target=".addEarthModal">
+            <a class="btn btn-secondary btn-sm float-right mr-5" href="#">
                 Filter
             </a>
             <span class="help-block" id="message"></span>

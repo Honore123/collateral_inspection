@@ -190,7 +190,17 @@ label:not(.form-check-label):not(.custom-file-label):not(.required) {
 .rep {
     font-weight: normal;
 }
-
+.uprofile img {
+    width: 2rem;
+    height: auto;
+}
+.uprofile{
+    background-color: #fafcff;
+    border-color: #80fff7;
+    padding-right: .8em;
+    border-radius: 1em;
+    box-shadow: 0 1px 1px #1f2d3d1f;
+}
 /* FOR IMAGES*/
 .venobox {
     cursor: zoom-in;

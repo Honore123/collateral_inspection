@@ -2,7 +2,7 @@
 @section('content')
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-6">
-                <h4 class="ml-2"> Review report </h4>
+                <h5 class="ml-2"> Show report </h5>
             </div>
     <div class="col-6">
 {{--                <button class="btn btn-success btn-sm float-right mr-2" data-toggle="modal" data-target="#addPropertyModal">--}}
@@ -22,13 +22,13 @@
         <div class="form-group">
             <div class="attachment-block clearfix">
                 <div class="attachment-img">
-                    <span class="float-right badge bg-danger mt-2">New property for :</span>
+                    <span class="float-right badge bg-danger mt-2">Property for :</span>
                 </div>
                 <div class="attachment-pushed">
                     <h4 class="attachment-heading">
                         <a href="#">UPI: {{ $earth->propertyUPI }}</a></h4>
                     <div class="attachment-text">
-                        {{ $earth->propertyOwner }} > {{ $earth->propertyType }} <a href="#">more</a>
+                        {{ $earth->propertyOwner }} / {{ $earth->propertyType }} <a href="{{ route('admin.earths.reviewAll', $earth->id) }}"> more... </a>
                     </div>
                     <!-- /.attachment-text -->
                 </div>
@@ -45,6 +45,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if($earth->propertyType == 'Land with Building')
                 @forelse($properties as $prop)
                     @if($earth->id == $prop->earth_id)
                         <tr>
@@ -62,6 +63,25 @@
                             <td colspan="4"> No data here </td>
                         </tr>
                 @endforelse
+                @else
+                    @forelse($lands as $land)
+                        @if($earth->id == $land->earth_id)
+                            <tr>
+                                <th scope="row">
+                                    {{ $loop->iteration++ }}
+                                </th>
+                                <td><img src="{{ asset("storage/$land->image1") }}" width="40" height="30" class="img-responsive img-thumbnail"></td>
+                                <td> {{ $land->currentUsage ?? '' }} </td>
+                                <td> N/A </td>
+                                <td> N/A </td>
+                            </tr>
+                        @endif
+                    @empty
+                        <tr>
+                            <td colspan="4"> No data here </td>
+                        </tr>
+                    @endforelse
+                @endif
                 </tbody>
             </table>
 {{--            <div class="form-group mr-2">--}}

@@ -10,14 +10,14 @@
         <div class="form-group">
             <div class="form-group">
                 <a class="btn btn-default" href="{{ route('admin.users.index') }}">
-                    {{ trans('global.back_to_list') }}
+                    Back
                 </a>
             </div>
             <table class="table table-bordered table-striped">
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.user.fields.id') }}
+                            User ID
                         </th>
                         <td>
                             {{ $user->id }}
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.user.fields.name') }}
+                            Username
                         </th>
                         <td>
                             {{ $user->name }}
@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.user.fields.email') }}
+                            Email
                         </th>
                         <td>
                             {{ $user->email }}
@@ -41,19 +41,19 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.user.fields.email_verified_at') }}
+                            Created At
                         </th>
                         <td>
-                            {{ $user->email_verified_at }}
+                            {{ $user->created_at }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.user.fields.roles') }}
+                            Role
                         </th>
                         <td>
                             @foreach($user->roles as $key => $roles)
-                                <span class="label label-info">{{ $roles->title }}</span>
+                                <span class="badge badge-info">{{ $roles->title }}</span>
                             @endforeach
                         </td>
                     </tr>
@@ -61,7 +61,7 @@
             </table>
             <div class="form-group">
                 <a class="btn btn-default" href="{{ route('admin.users.index') }}">
-                    {{ trans('global.back_to_list') }}
+                    Back
                 </a>
             </div>
         </div>

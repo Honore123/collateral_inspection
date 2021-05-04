@@ -3,15 +3,16 @@
 @can('role_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.roles.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.role.title_singular') }}
+            <a class="ml-2 font-weight-bold" style="font-size: large"> Role </a>
+            <a class="btn btn-sm btn-success float-right mr-2" href="{{ route('admin.roles.create') }}">
+                Add Role
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.role.title_singular') }} {{ trans('global.list') }}
+        Role List
     </div>
 
     <div class="card-body">
