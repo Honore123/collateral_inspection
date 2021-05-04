@@ -39,8 +39,8 @@ class EarthController extends Controller
         $pa = Pavement::all()->pluck('pavement_name', 'id')->prepend('Please select');
         $pt = PropertyType::all()->pluck('name', 'id')->prepend('Please select');
         $tt = TenureType::all()->pluck('tenure_type', 'id')->prepend('Please select');
-
-        return view('admin.earths.index', compact('earths', 'bt', 'ce', 'dw', 'el', 'fo', 'pa', 'pt', 'tt'))->with('users', User::all());
+        $pr = DB::table('rwanda_adus')->where('province', '!=', NULL)->groupBy('province')->get(['province']);
+        return view('admin.earths.index', compact('earths', 'bt', 'ce', 'dw', 'el', 'fo', 'pa', 'pt', 'tt', 'pr'))->with('users', User::all());
     }
 
     public function store(StoreEarthRequest $request)
@@ -78,7 +78,7 @@ class EarthController extends Controller
     {
         abort_if(Gate::denies('earth_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.earths.show', compact('earth'))->with('earth', $earth)->with('properties', Property::all());
+        return view('admin.earths.show', compact('earth'))->with('earth', $earth)->with('properties', Property::all())->with('lands', Land::all());
     }
 
     public function edit(Earth $earth)
@@ -93,7 +93,7 @@ class EarthController extends Controller
         $earth->update([
             'status' => 2,
             'value' => $request->value,
-            'comment' => NULL,
+            'comment' => $request->comment,
             'map' => $request->map->store('maps'),
         ]);
         //   Save pdf

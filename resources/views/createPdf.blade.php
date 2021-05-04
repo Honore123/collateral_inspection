@@ -41,6 +41,9 @@
         line-height: 1.3;
         border-radius: 1rem;
     }
+    .txt{
+        color: #6c757d!important;
+    }
 </style>
 <h2 class="header-title">INSPECTION REPORT</h2>
 <table>
@@ -323,6 +326,18 @@
                 <img src="{{ public_path('storage/'.$earth->map) }}" alt="map" width="100%">
             </td>
         </tr>
+
+        <tr>
+            <td class="key-align">Review:</td>
+            <td class="value">
+                @if($earth->comment != NULL)
+                    <i class="txt">{{$earth->comment}}</i>
+                @else
+                    <i class="txt"> N/A </i>
+                @endif
+            </td>
+        </tr>
+
         </tbody>
     @endif
 </table>

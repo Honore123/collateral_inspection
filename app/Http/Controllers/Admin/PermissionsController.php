@@ -61,9 +61,9 @@ class PermissionsController extends Controller
     {
         abort_if(Gate::denies('permission_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $permission->delete()->with('msg', 'Deleted');
+        $permission->delete();
 
-        return back();
+        return back()->with('msg', 'Deleted');
     }
 
     public function massDestroy(MassDestroyPermissionRequest $request)

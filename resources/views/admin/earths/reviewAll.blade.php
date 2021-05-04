@@ -9,9 +9,17 @@
                     <span class="badge badge-success mr-2">
                         <i class="fas fa-thumbs-up"></i> &nbsp; Approved
                     </span>
-                @else
+                @elseif($earth->status == 1)
                     <span class="badge badge-warning mr-2">
                         <i class="fas fa-clock"></i> &nbsp; Pending
+                    </span>
+                @elseif($earth->status == 3)
+                    <span class="badge badge-danger mr-2">
+                        <i class="far fa-times-circle"></i> &nbsp; Rejected
+                    </span>
+                @elseif($earth->status == 4)
+                    <span class="badge badge-info mr-2">
+                        <i class="fas fa-edit"></i> &nbsp; Need to modified
                     </span>
                 @endif
                 <a class="btn btn-secondary btn-sm float-right mr-2" href="{{ route('admin.earths.reports') }}">
@@ -22,7 +30,7 @@
             </div>
         </div>
 
-    <form method="POST" action="{{ route("admin.earths.update", [$earth->id]) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route("admin.earths.update", [$earth->id]) }}" enctype="multipart/form-data" onsubmit="return checkForm(this);">
             @method('PUT')
             @csrf
 
@@ -483,7 +491,7 @@
                                                 <label class="required">Estimated value (Total): </label>
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm" name="value" id="value" value="{{ old('value', $earth->value) }}" placeholder="Cash" required>
+                                                <input type="number" class="form-control form-control-sm" name="value" id="value" value="{{ old('value', $earth->value) }}" placeholder="Cash" required>
                                             </td>
                                         </tr>
                                         <tr>
@@ -509,7 +517,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-outline-success btn-sm">Approve</button>
+                                <input type="submit" name="myButton" class="btn btn-outline-success btn-sm" value="Approve">
                             </div>
                         </div>
                     </div>
@@ -616,13 +624,23 @@
 @section('scripts')
     @parent
     <script src="{{ asset('vendors/venobox/venobox.min.js')}}"></script>
+    <script type="text/javascript">
+
+        function checkForm(form) // Submit button clicked
+        {
+            // alert('Hey');
+            form.myButton.disabled = true;
+            form.myButton.value = "Please wait...";
+            return true;
+        }
+    </script>
     <script>
         $(document).ready(function(){
             $('.venobox').venobox({
-                framewidth : '',                                // default: ''
-                frameheight: '',                                // default: ''
-                border     : '8px',                             // default: '0'
-                infinigall : true,                               // default: false
+                framewidth : '',
+                frameheight: '',
+                border     : '8px',
+                infinigall : true,
             });
         });
     </script>
