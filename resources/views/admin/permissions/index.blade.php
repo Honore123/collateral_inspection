@@ -3,15 +3,16 @@
 @can('permission_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.permissions.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.permission.title_singular') }}
+            <a class="ml-2 font-weight-bold" style="font-size: large"> Permission </a>
+            <a class="btn btn-sm btn-success float-right mr-2" href="{{ route('admin.permissions.create') }}">
+                Add Permission
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.permission.title_singular') }} {{ trans('global.list') }}
+        Permission List
     </div>
 
     <div class="card-body">
