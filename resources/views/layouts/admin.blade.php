@@ -40,30 +40,30 @@
               <ul class="navbar-nav ml-auto">
                  
             <!-- Notifications Dropdown Menu -->
-                {{--
+
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
+                        <i class="fas fa-mobile-alt fa-lg"></i>
                         <span class="badge badge-warning navbar-badge"><strong style="color: #ffff00">i</strong></span>
 
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">Notifications</span>
+                        <span class="dropdown-item dropdown-header">Get Android App</span>
                         
                         <div class="dropdown-divider"></div>
-                        <a href="{{ route("admin.audit-logs.index") }}" class="dropdown-item notify">
-                            <i class="fas fa-envelope mr-2"></i>
-                              <strong> New message </strong>--}}
-{{--                                <span class="float-right text-muted text-sm">now</span>--}}
-                        {{--</a>
+                        <a href="#App" class="dropdown-item notify pb-0" style="text-align: center;">
+                            <img src="{{ asset('assets/img/CIS_QR_code.png') }}" class="img-fluid img-rounded" width="150" alt="">
+                                <span class="float-right text-muted text-sm pt-5">scan me to<br>quickly install<br>this App</span>
+                                <br><span class="text-muted text-sm">OR</span>
+                        </a>
                         <div class="dropdown-divider"></div>
-                        <a href="{{ route('admin.home') }}" class="dropdown-item dropdown-footer notify">See All Notifications</a>
+                        <a href="#App" class="dropdown-item dropdown-footer notify"><i class="fas fa-download mr-2"></i> Click to Download</a>
                     </div>
-                </li> --}}
+                </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#" >
-                        <div class="uprofile font-weight-bold"><img src="{{ asset('assets/img/user.svg') }}" class="img-circle" alt="User Image"> {{ Auth::user()->name }}</div>
+                        <div class="uprofile font-weight-bold"><img src="{{ asset('assets/img/user.svg') }}" class="img-circle" alt="profile"> {{ Auth::user()->name }}</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="{{ route('profile.password.edit') }}">
