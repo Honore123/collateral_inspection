@@ -172,7 +172,7 @@
                 <span class="help-block"></span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label class="col-sm-5 col-form-label col-form-label-sm" for="propertyType">Property type</label>
+                    <label class="col-sm-5 col-form-label col-form-label-sm required" for="propertyType">Property type</label>
                     <select class="form-control form-control-xs select2" name="propertyType" id="propertyType" style="width: 100%">
                         @foreach($pt as $id => $pti)
                             <option value="{{ $pti }}">{{ $pti }}</option>
@@ -224,34 +224,9 @@
                 <span class="help-block"></span>
             </div>
             </div>
-            
             <div class="form-row form-horizontal">
-                <div class="form-group col-md-6">
-                <label class="col-sm-5 col-form-label col-form-label-sm" for="building_type">Building type</label>
-                <select class="form-control form-control-xs select2" name="village" id="village" style="width: 100%">
-                    @foreach($bt as $id => $bti)
-                        <option value="{{ $bti }}">{{ $bti }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('building_type'))
-                    <span class="text-danger">{{ $errors->first('building_type') }}</span>
-                @endif
-                <span class="help-block"></span>
-                </div> 
-                <div class="form-group col-md-6">
-                <label class="required col-sm-3 col-form-label col-form-label-sm" for="status">Status</label>
-                <select class="form-control form-control-sm select2 {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" style="width: 100%" required>
-                    <option value="1">Pending</option>
-                </select>
-                @if($errors->has('status'))
-                    <span class="text-danger">{{ $errors->first('status') }}</span>
-                @endif
-                <span class="help-block"></span>
-            </div>
-            </div>
-            <div class="form-row form-horizontal">
-                <div class="form-group col-md-3">
-                <label class="required col-sm-6 col-form-label col-form-label-sm" for="province">Province</label>
+                <div class="form-group col-md-2">
+                <label class="required col-form-label col-form-label-sm" for="province">Province</label>
                 <select class="form-control form-control-sm select2 {{ $errors->has('province') ? 'is-invalid' : '' }}" name="province" id="province" style="width: 100%" required>
                     <option>Province</option>
                     <option value="North">North</option>
@@ -277,8 +252,8 @@
                 @endif
                 <span class="help-block"></span>
                 </div>
-                <div class="form-group col-md-3">
-                <label class="required col-sm-6 col-form-label col-form-label-sm" for="sector">Sector</label>
+                <div class="form-group col-md-2">
+                <label class="required col-form-label col-form-label-sm" for="sector">Sector</label>
                 <select class="form-control form-control-sm select2 {{ $errors->has('sector') ? 'is-invalid' : '' }}" name="sector" id="sector" style="width: 100%" required>
                     <option>Sector</option>
                     <option value="Nyamirambo">Nyamirambo</option>
@@ -291,7 +266,7 @@
                 @endif
                 <span class="help-block"></span>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                 <label class="required col-sm-6 col-form-label col-form-label-sm" for="cell">Cell</label>
                 <select class="form-control form-control-xs select2" name="cell" id="cell" style="width: 100%">
                     <option>Cell</option>
@@ -304,13 +279,27 @@
                 @endif
                 <span class="help-block"></span>
                 </div>
+                <div class="form-group col-md-3">
+                    <label class="required col-sm-6 col-form-label col-form-label-sm" for="province">Village</label>
+                    <select class="form-control form-control-sm select2 {{ $errors->has('village') ? 'is-invalid' : '' }}" name="village" id="village" style="width: 100%" required>
+                        <option>Village</option>
+                        <option value="Amahoro">Amahoro</option>
+                        <option value="Gihanga">Gihanga</option>
+                        <option value="Ituze">Ituze</option>
+                        <option value="Gihanga">Gihanga</option>
+                    </select>
+                    @if($errors->has('province'))
+                        <span class="text-danger">{{ $errors->first('province') }}</span>
+                    @endif
+                    <span class="help-block"></span>
+                </div>
             </div>
             <input type="hidden" name="users_id" id="users_id" value="{{ auth()->user()->id }}">
             <div class="form-group mt-3">
                <button class="btn btn-sm btn-secondary float-left" data-dismiss="modal">Close</button>
             </div>
             <div class="form-group mt-3">
-                <button type="submit" id="btnSave" class="btn btn-sm btn-primary float-right">Save</button>
+                <input type="submit" id="btnSave" name="btnSave" class="btn btn-sm btn-primary float-right" value="Save">
             </div>
         </form>
 

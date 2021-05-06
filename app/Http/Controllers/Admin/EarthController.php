@@ -31,16 +31,9 @@ class EarthController extends Controller
         abort_if(Gate::denies('earth_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $earths = Earth::where('status', '!=', 0)->orderBy('id', 'DESC')->get();
-        $bt = BuildingType::all()->pluck('name', 'id')->prepend('Please select');
-        $ce = Ceiling::all()->pluck('ceiling_name', 'id')->prepend('Please select');
-        $dw = Doorwindow::all()->pluck('doorwindow', 'id')->prepend('Please select');
-        $el = Elevation::all()->pluck('elevation_name', 'id')->prepend('Please select');
-        $fo = Foundation::all()->pluck('foundation_name', 'id')->prepend('Please select');
-        $pa = Pavement::all()->pluck('pavement_name', 'id')->prepend('Please select');
         $pt = PropertyType::all()->pluck('name', 'id')->prepend('Please select');
         $tt = TenureType::all()->pluck('tenure_type', 'id')->prepend('Please select');
-        $pr = DB::table('rwanda_adus')->where('province', '!=', NULL)->groupBy('province')->get(['province']);
-        return view('admin.earths.index', compact('earths', 'bt', 'ce', 'dw', 'el', 'fo', 'pa', 'pt', 'tt', 'pr'))->with('users', User::all());
+        return view('admin.earths.index', compact('earths','pt', 'tt'))->with('users', User::all());
     }
 
     public function store(StoreEarthRequest $request)
