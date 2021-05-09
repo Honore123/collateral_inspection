@@ -157,6 +157,17 @@
                                         <label class="rep"> {{ old('Accuracy', number_format($earth->accuracy,0,'.',',').' meters') }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th class="float-right">Document:</th>
+                                    <td>
+                                        <a class="venobox" href="{{ asset("storage/".$earth->document) }}" data-gall="myGallery">
+                                            @if ($earth->document != NULL)
+                                                <img src="{{ asset("storage/".$earth->document) }}" class="img-fluid" width="180" height="180" alt="Image 1">
+                                            @else
+                                            @endif
+                                        </a>
+                                    </td>
+                                </tr>
                                 </tbody></table>
                         </div>
                     </div>
