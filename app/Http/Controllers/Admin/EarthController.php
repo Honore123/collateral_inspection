@@ -31,16 +31,9 @@ class EarthController extends Controller
         abort_if(Gate::denies('earth_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $earths = Earth::where('status', '!=', 0)->orderBy('id', 'DESC')->get();
-        $bt = BuildingType::all()->pluck('name', 'id')->prepend('Please select');
-        $ce = Ceiling::all()->pluck('ceiling_name', 'id')->prepend('Please select');
-        $dw = Doorwindow::all()->pluck('doorwindow', 'id')->prepend('Please select');
-        $el = Elevation::all()->pluck('elevation_name', 'id')->prepend('Please select');
-        $fo = Foundation::all()->pluck('foundation_name', 'id')->prepend('Please select');
-        $pa = Pavement::all()->pluck('pavement_name', 'id')->prepend('Please select');
         $pt = PropertyType::all()->pluck('name', 'id')->prepend('Please select');
         $tt = TenureType::all()->pluck('tenure_type', 'id')->prepend('Please select');
-        $pr = DB::table('rwanda_adus')->where('province', '!=', NULL)->groupBy('province')->get(['province']);
-        return view('admin.earths.index', compact('earths', 'bt', 'ce', 'dw', 'el', 'fo', 'pa', 'pt', 'tt', 'pr'))->with('users', User::all());
+        return view('admin.earths.index', compact('earths','pt', 'tt'))->with('users', User::all());
     }
 
     public function store(StoreEarthRequest $request)
@@ -85,7 +78,10 @@ class EarthController extends Controller
     {
         abort_if(Gate::denies('earth_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.earths.edit', compact('earth'));
+        $tt = TenureType::all()->pluck('tenure_type', 'id')->prepend('Please Select');
+        $pt = PropertyType::all()->pluck('name', 'id')->prepend('Please Select');
+
+        return view('admin.earths.edit', compact('earth', 'tt', 'pt'))->with('property', Property::where('earth_id', $earth->id)->get())->with('land', Land::where('earth_id', $earth->id)->get());
     }
 
     public function update(UpdateEarthRequest $request, Earth $earth)
@@ -100,7 +96,7 @@ class EarthController extends Controller
         $pdf = PDF::loadView('createPdf',array('earth'=>$earth));
         $pdf->setOptions(['isPhpEnabled'=>true, 'isRemoteEnabled'=>true, 'chroot'=>public_path('/storage')]);
         $filename = time().'_'.$earth->propertyOwner.'.pdf';
-        $pdf->save(public_path('storage/generatedPdf/'.$filename));
+        $pdf->save(storage_path('app/generatedPdf/'.$filename));
 
         $earth->update([
             'reportFile' => $filename,
@@ -159,6 +155,27 @@ class EarthController extends Controller
         return view('admin.earths.reports', compact('earth'))->with('users', User::all())->with('earth', Earth::where('status', '!=' ,0)->orderBy('id', 'DESC')->get());
     }
 
+    public function editor(Request $request, Earth $earth)
+    {
+        $earth->update([
+            'propertyUPI' => $request->propertyUPI,
+            'province' => $request->province,
+            'district' => $request->district,
+            'sector' => $request->sector,
+            'cell' => $request->cell,
+            'village' => $request->village,
+            'propertyOwner' => $request->propertyOwner,
+            'tenureType' => $request->tenureType,
+            'propertyType' => $request->propertyType,
+            'plotSize' => $request->plotSize,
+            'encumbranes' => $request->encumbranes,
+            'mortgaged' => $request->mortgaged,
+            'servedBy' => $request->servedBy,
+        ]);
+
+        return redirect()->route('admin.earths.reports')->with('msg', 'Inspection Edited successfully');
+    }
+
     // apis For mobile application
     public function indexApi($userId)
     {
@@ -167,8 +184,13 @@ class EarthController extends Controller
             ->where('users_id',$userId)->get();
     }
     public function storeApi(Request $request){
-        return Earth::create($request->all('inspectionDate','propertyUPI','province','district','sector','cell','village','propertyOwner',
-            'tenureType','propertyType','plotSize','encumbranes','mortgaged','servedBy','latitude','longitude','accuracy','status','users_id'));
+        $image =  null;
+        if ($request->file('document') != null){
+            $image =  $request->file('document')->store('landTitle');
+        }
+        $inspection = json_decode($request->info, true);
+        $inspection['document'] = $image;
+        return Earth::create($inspection);
     }
     public function updateApi(Request $request, Earth $earth){
        $earth->update($request->all());

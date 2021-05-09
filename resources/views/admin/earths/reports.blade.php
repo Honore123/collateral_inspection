@@ -18,9 +18,9 @@
             <h3 class="card-title">Latest Inspection</h3>
         </div>
         <!-- /.card-header -->
-        <div class="card-body p-0">
+        <div class="card-body">
             <div class="table-responsive">
-                <table class="table datatable datatable-report m-0">
+                <table class="table table-bordered stripe table-hover datatable datatable-report" style="width: 100%">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -37,7 +37,7 @@
                     @forelse($earth as $earths)
                     <tr>
                         <td>{{$loop->iteration++}}</td>
-                        <td>CIS000{{$loop->iteration++}}</td>
+                        <td>CIS000{{$earths->id}}</td>
                         <td>{{ $earths->inspectionDate ?? '' }}</td>
                         <td>UPI {{ $earths->propertyUPI ?? '' }}</td>
                         <td>{{ $earths->propertyType ?? '' }}</td>
@@ -63,6 +63,9 @@
                         </td>
                         <td>
                             <a href="{{ route('admin.earths.reviewAll', $earths->id) }}" class="btn btn-xs btn-info  ">Review</a>
+                            @if($earths->status == 1)
+                                <a href="{{ route('admin.earths.edit', $earths->id) }}" class="btn btn-xs btn-outline-warning">Edit</a>
+                            @endif
                         </td>
                     </tr>
                     @empty
