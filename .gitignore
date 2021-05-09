@@ -5,4 +5,6 @@
 /storage/*.key
 /node_modules
 /public/storage
-
+Collateral.zip
+public/realc.sql
+public/public.zip

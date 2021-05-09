@@ -298,28 +298,28 @@
                                             <div class="containerZoom">
                                                 <table style="border:none; display: flex;"><tr><td style="padding: .2rem;">
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image1) }}" data-gall="myGallery">
-                                                    @if (File::exists(public_path("storage/".$properties->image1)) && $properties->image1 != NULL)
+                                                    @if ( $properties->image1 != NULL)
                                                         <img src="{{ asset("storage/".$properties->image1) }}" class="img-fluid" width="180" alt="Image 1">
                                                     @else
 
                                                     @endif
                                                 </a></td><td style="padding: .2rem;">
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image2) }}" data-gall="myGallery">
-                                                    @if (File::exists(public_path("storage/".$properties->image2)) && $properties->image2 != NULL)
+                                                    @if ( $properties->image2 != NULL)
                                                         <img src="{{ asset("storage/".$properties->image2) }}" class="img-fluid" width="180" alt="Image 2">
                                                     @else
 
                                                     @endif
                                                 </a></td></tr><tr><td style="padding: .2rem;">
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image3) }}" data-gall="myGallery">
-                                                    @if (File::exists(public_path("storage/".$properties->image3)) && $properties->image3 != NULL)
+                                                    @if ( $properties->image3 != NULL)
                                                         <img src="{{ asset("storage/".$properties->image3) }}" class="img-fluid" width="180" alt="Image 3">
                                                     @else
 
                                                     @endif
                                                 </a></td><td style="padding: .2rem;">
                                                 <a class="venobox" href="{{ asset("storage/".$properties->image4) }}" data-gall="myGallery">
-                                                    @if (File::exists(public_path("storage/".$properties->image4)) && $properties->image4 != NULL)
+                                                    @if ( $properties->image4 != NULL)
                                                         <img src="{{ asset("storage/".$properties->image4) }}" class="img-fluid" width="180" alt="Image 4">
                                                     @else
 
@@ -372,28 +372,28 @@
                                             <td>
                                                 <div class="containerZoom float-left">
                                                     <a class="venobox" href="{{ asset("storage/".$lands->image1) }}" data-gall="myGallery">
-                                                        @if (File::exists(public_path("storage/".$lands->image1)) && $lands->image1 != NULL)
+                                                        @if ($lands->image1 != NULL)
                                                             <img src="{{ asset("storage/".$lands->image1) }}" class="p-sm-1" width="180" alt="Image 1">
                                                         @else
 
                                                         @endif
                                                     </a>
                                                     <a class="venobox" href="{{ asset("storage/".$lands->image2) }}" data-gall="myGallery">
-                                                        @if (File::exists(public_path("storage/".$lands->image2)) && $lands->image2 != NULL)
+                                                        @if ( $lands->image2 != NULL)
                                                             <img src="{{ asset("storage/".$lands->image2) }}" class="p-sm-1" width="180" alt="Image 2">
                                                         @else
 
                                                         @endif
                                                     </a>
                                                     <a class="venobox" href="{{ asset("storage/".$lands->image3) }}" data-gall="myGallery">
-                                                        @if (File::exists(public_path("storage/".$lands->image3)) && $lands->image3 != NULL)
+                                                        @if ( $lands->image3 != NULL)
                                                             <img src="{{ asset("storage/".$lands->image3) }}" class="p-sm-1" width="180" alt="Image 3">
                                                         @else
 
                                                         @endif
                                                     </a>
                                                     <a class="venobox" href="{{ asset("storage/".$lands->image4) }}" data-gall="myGallery">
-                                                        @if (File::exists(public_path("storage/".$lands->image4)) && $lands->image4 != NULL)
+                                                        @if ( $lands->image4 != NULL)
                                                             <img src="{{ asset("storage/".$lands->image4) }}" class="p-sm-1" width="180" alt="Image 4">
                                                         @else
 
