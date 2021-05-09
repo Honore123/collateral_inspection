@@ -125,6 +125,7 @@
     <script src="{{ asset('vendors/select2/select2.min.js')}}"></script>
     <script src="{{ asset('vendors/moment/moment.min.js')}}"></script>
     <script src="{{ asset('vendors/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('vendors/jquery/jquery.mask.min.js')}}"></script>
     <script src="{{ asset('vendors/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{ asset('vendors/datatables/dataTables.select.min.js')}}"></script>
     <script src="{{ asset('vendors/bootstrap/bootstrap-datetimepicker.min.js')}}"></script>

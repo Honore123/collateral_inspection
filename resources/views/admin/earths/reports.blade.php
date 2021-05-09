@@ -18,9 +18,9 @@
             <h3 class="card-title">Latest Inspection</h3>
         </div>
         <!-- /.card-header -->
-        <div class="card-body p-0">
+        <div class="card-body">
             <div class="table-responsive">
-                <table class="table datatable datatable-report m-0">
+                <table class="table table-bordered stripe table-hover datatable datatable-report" style="width: 100%">
                     <thead>
                     <tr>
                         <th>#</th>
