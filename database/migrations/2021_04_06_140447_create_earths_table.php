@@ -37,6 +37,7 @@ class CreateEarthsTable extends Migration
             $table->integer('value')->nullable();
             $table->foreignId('users_id')->constrained();
             $table->string('reportFile')->nullable();
+            $table->string('document')->nullable();
             $table->longText('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();

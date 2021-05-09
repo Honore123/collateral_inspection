@@ -78,7 +78,10 @@ class EarthController extends Controller
     {
         abort_if(Gate::denies('earth_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.earths.edit', compact('earth'));
+        $tt = TenureType::all()->pluck('tenure_type', 'id')->prepend('Please Select');
+        $pt = PropertyType::all()->pluck('name', 'id')->prepend('Please Select');
+
+        return view('admin.earths.edit', compact('earth', 'tt', 'pt'))->with('property', Property::where('earth_id', $earth->id)->get())->with('land', Land::where('earth_id', $earth->id)->get());
     }
 
     public function update(UpdateEarthRequest $request, Earth $earth)
@@ -93,7 +96,7 @@ class EarthController extends Controller
         $pdf = PDF::loadView('createPdf',array('earth'=>$earth));
         $pdf->setOptions(['isPhpEnabled'=>true, 'isRemoteEnabled'=>true, 'chroot'=>public_path('/storage')]);
         $filename = time().'_'.$earth->propertyOwner.'.pdf';
-        $pdf->save(public_path('storage/generatedPdf/'.$filename));
+        $pdf->save(storage_path('app/generatedPdf/'.$filename));
 
         $earth->update([
             'reportFile' => $filename,
@@ -150,6 +153,27 @@ class EarthController extends Controller
     {
         //$earth = Earth::orderBy('id', 'DESC')->get();
         return view('admin.earths.reports', compact('earth'))->with('users', User::all())->with('earth', Earth::where('status', '!=' ,0)->orderBy('id', 'DESC')->get());
+    }
+
+    public function editor(Request $request, Earth $earth)
+    {
+        $earth->update([
+            'propertyUPI' => $request->propertyUPI,
+            'province' => $request->province,
+            'district' => $request->district,
+            'sector' => $request->sector,
+            'cell' => $request->cell,
+            'village' => $request->village,
+            'propertyOwner' => $request->propertyOwner,
+            'tenureType' => $request->tenureType,
+            'propertyType' => $request->propertyType,
+            'plotSize' => $request->plotSize,
+            'encumbranes' => $request->encumbranes,
+            'mortgaged' => $request->mortgaged,
+            'servedBy' => $request->servedBy,
+        ]);
+
+        return redirect()->route('admin.earths.reports')->with('msg', 'Inspection Edited successfully');
     }
 
     // apis For mobile application

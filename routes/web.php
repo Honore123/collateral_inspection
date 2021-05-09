@@ -34,6 +34,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::put('earths/modify/{earth}', 'EarthController@modify')->name('earths.modify');
 
+    Route::get('earths/editor/{earth}', 'EarthController@edit')->name('earths.edit');
+
+    Route::put('earths/editor/{earth}', 'EarthController@editor')->name('earths.editor');
+
     Route::get('earths/reports', 'EarthController@reports')->name('earths.reports');
 
     Route::resource('earths', 'EarthController');

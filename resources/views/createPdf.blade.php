@@ -1,10 +1,11 @@
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
     .header-title{
         text-align: center;
         border-bottom: 1px solid black;
     }
     h4,table{
-        font-family: "SF Pro Text";
+        font-family: 'Roboto', sans-serif;
     }
     .key-align{
         text-align: right;
@@ -190,19 +191,19 @@
             <tr>
                 <td class="value float-left" style="float: left; width: 100%" colspan="5" >
                     @if ($property->image1 != NULL)
-                        <img src="{{ public_path('storage/'.$property->image1) }}" width="320">
+                        <img src="{{ asset('storage/'.$property->image1) }}" width="320">
                     @else
                     @endif
                     @if ($property->image2 != NULL)
-                        <img src="{{ public_path('storage/'.$property->image2) }}" width="320">
+                        <img src="{{ asset('storage/'.$property->image2) }}" width="320">
                     @else
                     @endif
                     @if ($property->image3 != NULL)
-                        <img src="{{ public_path('storage/'.$property->image3) }}" width="320">
+                        <img src="{{ asset('storage/'.$property->image3) }}" width="320">
                     @else
                     @endif
                     @if ($property->image4 != NULL)
-                        <img src="{{ public_path('storage/'.$property->image4) }}" width="320">
+                        <img src="{{ asset('storage/'.$property->image4) }}" width="320">
                     @else
                     @endif
                 </td>
@@ -217,7 +218,7 @@
         </tr>
         <tr>
             <td colspan="4">
-                <img src="{{ public_path('storage/'.$earth->map) }}" alt="map" width="100%">
+                <img src="{{ storage_path('app/'.$earth->map) }}" alt="map" width="100%">
             </td>
         </tr>
         </tbody>
@@ -271,6 +272,10 @@
             <td class="key-align">Number of Buildings:</td>
             <td class="value">{{$earth->property->count()}}</td>
         </tr>
+        <tr>
+            <td class="key-align">Estimated Value:</td>
+            <td colspan="3"><button class="btn">{{number_format($earth->value,0,'.',',')}} RWF</button></td>
+        </tr>
         @forelse($earth->land as $land)
             <tr class="building-underline">
                 <td colspan="4" class="building-title">LAND {{$loop->iteration++}}</td>
@@ -284,11 +289,6 @@
             <tr>
                 <td class="last-row"></td>
             </tr>
-
-            <tr>
-                <td class="key-align">Estimated Value:</td>
-                <td colspan="3"><button class="btn">{{number_format($earth->value,0,'.',',')}} RWF</button></td>
-            </tr>
             <tr>
                 <td class="key-align">Picture</td>
                 <td class="value">:</td>
@@ -296,19 +296,19 @@
             <tr>
                 <td class="value float-left" style="float: left; width: 100%" colspan="5" >
                     @if ($land->image1 != NULL)
-                        <img src="{{ public_path('storage/'.$land->image1) }}" width="320">
+                        <img src="{{ asset('storage/'.$land->image1) }}" width="320">
                     @else
                     @endif
                     @if ($land->image2 != NULL)
-                        <img src="{{ public_path('storage/'.$land->image2) }}" width="320">
+                        <img src="{{ asset('storage/'.$land->image2) }}" width="320">
                     @else
                     @endif
                     @if ($land->image3 != NULL)
-                        <img src="{{ public_path('storage/'.$land->image3) }}" width="320">
+                        <img src="{{ asset('storage/'.$land->image3) }}" width="320">
                     @else
                     @endif
                     @if ($land->image4 != NULL)
-                        <img src="{{ public_path('storage/'.$land->image4) }}" width="320">
+                        <img src="{{ asset('storage/'.$land->image4) }}" width="320">
                     @else
                     @endif
                 </td>
@@ -323,7 +323,7 @@
         </tr>
         <tr>
             <td colspan="4">
-                <img src="{{ public_path('storage/'.$earth->map) }}" alt="map" width="100%">
+                <img src="{{ asset('storage/'.$earth->map) }}" alt="map" width="100%">
             </td>
         </tr>
 
