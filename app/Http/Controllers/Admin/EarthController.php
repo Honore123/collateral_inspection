@@ -93,6 +93,7 @@ class EarthController extends Controller
             'map' => $request->map->store('maps'),
         ]);
         //   Save pdf
+        ini_set('max_execution_time', 0);
         $pdf = PDF::loadView('createPdf',array('earth'=>$earth));
         $pdf->setOptions(['isPhpEnabled'=>true, 'isRemoteEnabled'=>true, 'chroot'=>public_path('/storage')]);
         $filename = time().'_'.$earth->propertyOwner.'.pdf';
